@@ -1,0 +1,21 @@
+<phpunit bootstrap="./TestCase.php">
+    <testsuites>
+        <testsuite name="Controllers">
+            <file>./tests/controllers/UserTest.php</file>
+            <file>./tests/controllers/NewTest.php</file>
+            <file>./tests/controllers/LoginTest.php</file>
+        </testsuite>
+        <testsuite name="Models">
+            <file>./tests/models/UserTest.php</file>
+            <file>./tests/models/NewTest.php</file>
+        </testsuite>
+        <testsuite name="Libraries">
+            <file>./tests/library/util/ValidateTest.php</file>
+            <file>./tests/library/http/request/decorator/SimpleCryptTest.php</file>
+            <file>./tests/library/http/request/decorator/LoggerFileTest.php</file>
+        </testsuite>
+        <testsuite name="Services">
+            <file>./tests/services/user/InfoTest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
