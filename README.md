@@ -1,4 +1,4 @@
-# YafUnit
+# yaf-phpunit
 
 ## Introduction
 
@@ -76,6 +76,20 @@ server {
                 break;
         }
 }
+```
+
+### PHP ini setting.
+```
+[Yaf]
+extension=yaf.so
+yaf.environ=local
+yaf.cache_config=0
+yaf.name_suffix=0
+yaf.name_separator="_"
+yaf.forward_limit=5
+yaf.use_namespace=1
+yaf.use_spl_autoload=1
+yaf.lowcase_path=1
 ```
 
 ### PHPUnit Testing
