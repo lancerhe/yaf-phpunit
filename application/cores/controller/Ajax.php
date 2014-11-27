@@ -15,6 +15,6 @@ class Ajax extends \Core\Controller {
      * @param  Core_View  $view
      */
     public static function defaultExceptionHandler( $exception, $view ) {
-        $view->displayJson($exception->getMessage(), array(), $exception->getCode());
+        $view->displayAjax($exception->getMessage(), array(), $exception->getCode());
     }
 }

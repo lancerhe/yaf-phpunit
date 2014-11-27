@@ -7,6 +7,8 @@
  */
 namespace Core\Controller;
 
+use Core\Exception\RequestMethodException;
+
 class Cli extends \Core\Controller {
 
     /**
@@ -14,18 +16,8 @@ class Cli extends \Core\Controller {
      */
     public function init() {
         parent::init();
-        if ( ! APP_IS_CLI ) {
-            throw new Core_Exception_RequestMethodException();
+        if ( ! APPLICATION_IS_CLI ) {
+            throw new RequestMethodException();
         } 
-    }
-
-
-    /**
-     * default exception handler
-     * @param  Exception  $exception
-     * @param  Core_View  $view
-     */
-    public static function defaultExceptionHandler( $exception, $view ) {
-        $view->failure($exception->getMessage());
     }
 }
