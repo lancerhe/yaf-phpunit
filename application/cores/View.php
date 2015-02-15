@@ -7,7 +7,7 @@
 namespace Core;
 
 class View extends \Yaf\View\Simple {
-
+    
     /**
      * Display page
      * @param  string  $view_path  filepath, ex: production/index.html.
@@ -26,10 +26,10 @@ class View extends \Yaf\View\Simple {
      * @param  int    $code  Response code code, success: 0, error: exception code.
      * @return string
      */
-    public function displayApi($data, $code=0) {
+    public function displayApi( $data = array(), $code = 0 ) {
         $this->assign('data', $data);
         $this->assign('code', $code);
-        $this->display(APP_VIEWS_PATH.'/common/response-api.html');
+        $this->display(APPLICATION_VIEWS_PATH.'/common/response_api.html');
     }
 
 
@@ -40,10 +40,10 @@ class View extends \Yaf\View\Simple {
      * @param  int     $code      Response code code, success: 0, error: exception code.
      * @return string
      */
-    public function displayJson($message, $data = array(), $code = 0) {
+    public function displayAjax( $message, $data = array(), $code = 0 ) {
         $this->assign('data',    $data);
         $this->assign('code',    $code);
         $this->assign('message', $message);
-        $this->display(APP_VIEWS_PATH.'/common/response-ajax.html');
+        $this->display(APPLICATION_VIEWS_PATH.'/common/response_ajax.html');
     }
 }

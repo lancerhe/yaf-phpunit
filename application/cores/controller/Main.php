@@ -15,6 +15,6 @@ class Main extends \Core\Controller {
      * @param  Core_View  $view
      */
     public static function defaultExceptionHandler( $exception, $view ) {
-        $view->failure($exception->getMessage());
+        var_dump($exception->getMessage());
     }
 }
