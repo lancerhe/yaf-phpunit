@@ -64,6 +64,7 @@ class ExceptionHandler {
      * @return string
      */
     public function yafExceptionHandler( \Yaf\Exception $exception ) {
+        $this->getView()->setScriptPath(APPLICATION_VIEWS_PATH);
         $this->getView()->assign("exception", $exception);
         $this->getView()->display('error/error_yaf.html');
     }
@@ -74,6 +75,7 @@ class ExceptionHandler {
      * @return string
      */
     public function defaultExceptionHandler( \Exception $exception ) {
+        $this->getView()->setScriptPath(APPLICATION_VIEWS_PATH);
         $this->getView()->assign("exception", $exception);
         $this->getView()->display('error/error.html');
     }
