@@ -15,9 +15,7 @@ class Cli extends \Core\Controller {
      * Only request by cli mode.
      */
     public function init() {
-        parent::init();
-        if ( ! APPLICATION_IS_CLI ) {
+        if ( ! APPLICATION_IS_CLI ) 
             throw new RequestMethodException();
-        } 
     }
 }
