@@ -18,6 +18,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         define('APPLICATION_CORES_PATH',    APPLICATION_PATH . '/cores');
         define('APPLICATION_SERVICES_PATH', APPLICATION_PATH . '/services');
         define('APPLICATION_LIBRARY_PATH',  APPLICATION_PATH . '/library');
+        define('APPLICATION_MODULES_PATH',  APPLICATION_PATH . '/modules');
     }
 
 
