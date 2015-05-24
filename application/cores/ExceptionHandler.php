@@ -38,7 +38,7 @@ class ExceptionHandler {
     public function handler( $exception ) {
         // 若是Yaf定义的异常被接收到
         if ( $exception instanceof \Yaf\Exception ) {
-            $this->yafExceptionHandler( $exception, $this->getView()  );
+            $this->getView()->frameworkExceptionHandler( $exception );
             return;
         }
 
@@ -55,27 +55,7 @@ class ExceptionHandler {
             exit();
         }
 
-        $this->defaultExceptionHandler( $exception, $this->getView() );
-    }
-
-
-    /**
-     * Yaf错误模板渲染
-     * @return string
-     */
-    public function yafExceptionHandler( \Yaf\Exception $exception, View $view ) {
-        $view->assign("exception", $exception);
-        $view->display('error/error_yaf.html');
-    }
-
-
-    /**
-     * 错误模板渲染
-     * @return string
-     */
-    public function defaultExceptionHandler( \Exception $exception, View $view ) {
-        $view->assign("exception", $exception);
-        $view->display('error/error.html');
+        $this->getView()->defaultExceptionHandler( $exception );
     }
 
 
@@ -84,6 +64,6 @@ class ExceptionHandler {
      * @return \Yaf\View_Interface  $view   视图对象
      */
     public function getView() {
-        return \Yaf\Dispatcher::getInstance()->initView( APPLICATION_VIEWS_PATH );
+        return \Yaf\Dispatcher::getInstance()->initView( null );
     }
 }

@@ -4,7 +4,7 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-04-15
  */
-class Controller_User extends \Core\Controller\Main {
+class Controller_User extends \Core\Controller\Index {
 
     /**
      * @url http://yourdomain/user

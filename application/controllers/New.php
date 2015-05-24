@@ -4,10 +4,10 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-10-25
  */
-class Controller_New extends \Core\Controller\Main {
+class Controller_New extends \Core\Controller\Index {
 
     /**
-     * http://yourdomain/news-255-2.html
+     * @url http://yourdomain/news-255-2.html
      */
     public function indexAction() {
         $id   = $this->getRequest()->getParam('id');
@@ -15,6 +15,14 @@ class Controller_New extends \Core\Controller\Main {
 
         $this->getView()->assign("id",   $id);
         $this->getView()->assign("page", $page);
+        $this->getView()->display('new/index.html'); 
+    }
+
+    /**
+     * @url http://yourdomain/new/list
+     */
+    public function listAction() {
+        throw new Exception("Error Processing Request", 1);
     }
 
     /**

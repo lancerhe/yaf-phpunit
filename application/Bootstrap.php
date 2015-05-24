@@ -80,13 +80,12 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
 
 
     /**
-     * Initialize view.
+     * Initialize plugin.
      * @param \Yaf\Dispatcher $dispatcher
      * @return void
      */
-    public function _initView( \Yaf\Dispatcher $dispatcher ) {
-        $view = new \Core\View( APPLICATION_VIEWS_PATH, array() );
-        $dispatcher->setView($view);
+    public function _initPlugin( \Yaf\Dispatcher $dispatcher ) {
+        $dispatcher->registerPlugin( new Plugin_View );
     }
 
 

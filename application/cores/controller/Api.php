@@ -7,14 +7,4 @@
  */
 namespace Core\Controller;
 
-class Api extends \Core\Controller {
-
-    /**
-     * default exception handler
-     * @param  Exception  $exception
-     * @param  Core_View  $view
-     */
-    public static function defaultExceptionHandler( $exception, $view ) {
-        $view->displayApi(array(), $exception->getCode());
-    }
-}
+class Api extends \Core\Controller {}
