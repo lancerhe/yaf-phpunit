@@ -27,7 +27,7 @@ class Ajax extends \Yaf\View\Simple {
      * @return string
      */
     public function frameworkExceptionHandler( \Yaf\Exception $exception ) {
-        $this->display(null, $exception->getMessage(), $exception->getCode());
+        $this->display($exception->getMessage(), null, $exception->getCode());
     }
 
     /**
@@ -35,6 +35,6 @@ class Ajax extends \Yaf\View\Simple {
      * @return string
      */
     public function defaultExceptionHandler( \Exception $exception ) {
-        $this->display(null, $exception->getMessage(), $exception->getCode());
+        $this->display($exception->getMessage(), null, $exception->getCode());
     }
 }
