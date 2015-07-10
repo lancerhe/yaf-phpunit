@@ -164,11 +164,12 @@ namespace YafUnit;
 
 /**
  * \YafUnit\View 通过模拟一个无法渲染无法读取模板的视图引擎获取视图中变量
- * \Core\View 继承核心视图类 > 子类\Yaf\View\Simple
+ * 子类\Yaf\View\Simple
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-04-18
+ * @update 2015-07-10
  */
-final class View extends \Core\View {
+final class View extends \Yaf\View\Simple {
 
     protected static $_instance = null;
 
@@ -203,5 +204,18 @@ final class View extends \Core\View {
      */
     public function display( $view_path, $tpl_vars = null) {
         return false;
+    }
+}
+
+namespace YafUnit\Plugin;
+
+final class View extends \Yaf\Plugin_Abstract {
+
+    /**
+     * 路由结束以后注册View
+     */
+    public function routerShutdown(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
+        \Yaf\Dispatcher::getInstance()->disableView();
+        \Yaf\Dispatcher::getInstance()->setView( \YafUnit\View::getInstance() );
     }
 }

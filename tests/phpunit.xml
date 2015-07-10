@@ -1,7 +1,7 @@
 <phpunit bootstrap="./TestCase.php">
     <testsuites>
         <testsuite name="Controllers">
-            <file>./tests/controllers/UserTest.php</file>
+            <file>./controllers/UserTest.php</file>
             <file>./tests/controllers/NewTest.php</file>
             <file>./tests/controllers/LoginTest.php</file>
         </testsuite>
