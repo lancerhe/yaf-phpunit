@@ -13,10 +13,10 @@ class InfoTest extends TestCase {
     /**
      * @test
      */
-    public function requestAccountBalance() {
+    public function queryAccountBalance() {
         $service_info = new \Service\User\Info();
-        $response = $service_info->requestAccountBalance();
+        $balance = $service_info->queryAccountBalance();
         
-        $this->assertEquals(200, $response['value']);
+        $this->assertEquals(200, $balance);
     }
 }

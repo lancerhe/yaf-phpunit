@@ -99,7 +99,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         $config = new \Yaf\Config\Ini( APPLICATION_CONFIG_PATH . "/routes.ini" );
         if ( empty($config->routes) )
             return ;
-        
+
         $dispatcher->config->routes = $config->routes;
         $dispatcher->getRouter()->addConfig($config->routes);
     }

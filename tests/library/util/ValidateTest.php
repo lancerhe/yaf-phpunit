@@ -11,9 +11,9 @@ use YafUnit\TestCase;
 class ValidateTest extends TestCase {
 
     /**
-     * 测试 isEmailAddr
+     * @test
      */
-    public function testIsEmailAddr() {
+    public function isEmailAddr() {
         $success = \Util_Validate::isEmailAddr( 'lancer.he@gmail.com' );
         $failure = \Util_Validate::isEmailAddr( 'lancer.hegmail.com' );
 
@@ -23,9 +23,9 @@ class ValidateTest extends TestCase {
 
 
     /**
-     * 测试 testIsHttpUrl
+     * @test
      */
-    public function testIsHttpUrl() {
+    public function isHttpUrl() {
         $success = \Util_Validate::isHttpUrl( 'http://www.baidu.com' );
         $failure = \Util_Validate::isHttpUrl( 'www.baidu.com' );
 

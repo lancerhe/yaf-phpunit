@@ -1,21 +1,28 @@
-<phpunit bootstrap="./TestCase.php">
+<phpunit backupStaticAttributes="false"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
+    stopOnFailure="false"
+    syntaxCheck="false"
+    bootstrap="./TestCase.php"
+>
     <testsuites>
         <testsuite name="Controllers">
             <file>./controllers/UserTest.php</file>
-            <file>./tests/controllers/NewTest.php</file>
-            <file>./tests/controllers/LoginTest.php</file>
+            <file>./controllers/NewTest.php</file>
+            <file>./controllers/LoginTest.php</file>
         </testsuite>
         <testsuite name="Models">
-            <file>./tests/models/UserTest.php</file>
-            <file>./tests/models/NewTest.php</file>
+            <file>./models/UserTest.php</file>
+            <file>./models/NewTest.php</file>
         </testsuite>
         <testsuite name="Libraries">
-            <file>./tests/library/util/ValidateTest.php</file>
-            <file>./tests/library/http/request/decorator/SimpleCryptTest.php</file>
-            <file>./tests/library/http/request/decorator/LoggerFileTest.php</file>
+            <file>./library/util/ValidateTest.php</file>
         </testsuite>
         <testsuite name="Services">
-            <file>./tests/services/user/InfoTest.php</file>
+            <file>./services/user/InfoTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
