@@ -1,6 +1,6 @@
 {
     "require-dev": {
-        "phpunit/phpunit": "3.7.*"
+        "lancerhe/php-yafunit": "dev-master"
     }
     , "minimum-stability": "stable"
 }

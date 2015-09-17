@@ -4,9 +4,9 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-04-15
  */
-namespace YafUnit\TestCase\Model;
+namespace Tests\TestCase\Model;
 
-use YafUnit\TestCase;
+use Tests\TestCase;
 
 class UserTest extends TestCase {
 

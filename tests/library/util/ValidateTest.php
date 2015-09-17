@@ -4,9 +4,9 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-04-15
  */
-namespace YafUnit\TestCase\Library\Util;
+namespace Tests\TestCase\Library\Util;
 
-use YafUnit\TestCase;
+use Tests\TestCase;
 
 class ValidateTest extends TestCase {
 

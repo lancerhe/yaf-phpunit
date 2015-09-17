@@ -6,9 +6,9 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-04-15
  */
-namespace YafUnit\TestCase\Controller;
+namespace Tests\TestCase\Controller;
 
-use YafUnit\TestCase;
+use Tests\TestCase;
 use YafUnit\Request\Simple;
 use YafUnit\Request\Http;
 

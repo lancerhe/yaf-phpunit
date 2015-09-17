@@ -1,5 +1,5 @@
 <?php
-namespace YafUnit;
+namespace Tests;
 
 define('APPLICATION_NOT_RUN', true);
 
@@ -23,7 +23,7 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 
     private function __setUpApplicationInit() {
         self::$_app  = \Yaf\Dispatcher::getInstance()->getApplication();
-        self::$_view = View::getInstance();
+        self::$_view = \YafUnit\View\Simple::getInstance();
     }
 
     private function __setUpYafApplication() {
@@ -32,7 +32,7 @@ class TestCase extends \PHPUnit_Framework_TestCase {
         \Yaf\Loader::import( dirname(__DIR__) . '/public/index.php' );
 
         // Import test case base file.
-        \Yaf\Loader::import( __DIR__ . '/YafUnit.php' );
+        // \Yaf\Loader::import( __DIR__ . '/YafUnit.php' );
 
         $this->__setUpApplicationInit();
 

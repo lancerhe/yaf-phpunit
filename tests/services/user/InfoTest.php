@@ -4,9 +4,9 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-10-26
  */
-namespace YafUnit\TestCase\Service\User;
+namespace Tests\TestCase\Service\User;
 
-use YafUnit\TestCase;
+use Tests\TestCase;
 
 class InfoTest extends TestCase {
 
