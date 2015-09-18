@@ -10,13 +10,19 @@ use Tests\TestCase;
 
 class NewTest extends TestCase {
 
+    public $model;
+
+    public function setUp() {
+        parent::setUp();
+        $this->model = new \Model_New();
+    }
+
     /**
      * @test
      */
     public function addRowFailure() {
         $this->setExpectedException('\Core\Exception\DatabaseException');
-        $model = new \Model_New();
-        $model->addRow();
+        $this->model->addRow();
     }
 
     /**
@@ -24,7 +30,6 @@ class NewTest extends TestCase {
      */
     public function deleteRowFailure() {
         $this->setExpectedException('\Core\Exception\DatabaseWriteException');
-        $model = new \Model_New();
-        $model->deleteRow();
+        $this->model->deleteRow();
     }
 }

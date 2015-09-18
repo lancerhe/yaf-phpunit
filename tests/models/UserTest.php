@@ -10,6 +10,13 @@ use Tests\TestCase;
 
 class UserTest extends TestCase {
 
+    public $model;
+
+    public function setUp() {
+        parent::setUp();
+        $this->model = new \Model_User();
+    }
+
     public static function providerFetchRowId() {
         return array(
             array(4, array(
@@ -29,9 +36,8 @@ class UserTest extends TestCase {
      * @test
      * @dataProvider providerFetchRowId
      */
-    public function fetchRowById4($id, $expected_row) {
-        $model = new \Model_User();
-        $row   = $model->fetchRowById($id);
+    public function fetchRowById($id, $expected_row) {
+        $row   = $this->model->fetchRowById($id);
 
         $this->assertEquals($expected_row,  $row);
         $this->assertInternalType('string', $row['name']);
@@ -44,9 +50,7 @@ class UserTest extends TestCase {
      * @test
      */
     public function fetchCount() {
-        $model = new \Model_User();
-        $count = $model->fetchCount();
-
+        $count = $this->model->fetchCount();
         $this->assertEquals(1600, $count);
     }
 }

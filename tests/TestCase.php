@@ -31,9 +31,6 @@ class TestCase extends \PHPUnit_Framework_TestCase {
         // Import application and bootstrap.
         \Yaf\Loader::import( dirname(__DIR__) . '/public/index.php' );
 
-        // Import test case base file.
-        // \Yaf\Loader::import( __DIR__ . '/YafUnit.php' );
-
         $this->__setUpApplicationInit();
 
         \Yaf\Dispatcher::getInstance()->registerPlugin( new \YafUnit\Plugin\View );

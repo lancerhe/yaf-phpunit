@@ -9,6 +9,11 @@
     bootstrap="./TestCase.php"
 >
     <testsuites>
+        <testsuite name="Library Test Suite">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites><!-- 
+    <testsuites>
         <testsuite name="Controllers">
             <file>./controllers/UserTest.php</file>
             <file>./controllers/NewTest.php</file>
@@ -24,5 +29,5 @@
         <testsuite name="Services">
             <file>./services/user/InfoTest.php</file>
         </testsuite>
-    </testsuites>
+    </testsuites> -->
 </phpunit>
