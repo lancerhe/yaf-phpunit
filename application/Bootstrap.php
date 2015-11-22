@@ -86,6 +86,13 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
      */
     public function _initPlugin( \Yaf\Dispatcher $dispatcher ) {
         $dispatcher->registerPlugin( new Plugin_View );
+
+        ActiveRecord\Config::initialize(function($cfg) {
+            // $cfg->set_model_directory(__DIR__ . '/models');
+            $cfg->set_connections(array('development' => 'mysql://root:root@127.0.0.1/article'));
+            // you can change the default connection with the below
+            //$cfg->set_default_connection('production');
+        });
     }
 
 
