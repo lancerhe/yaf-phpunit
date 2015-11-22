@@ -13,6 +13,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
      * @return void
      */
     public function _initConst( \Yaf\Dispatcher $dispatcher ) {
+        define('APPLICATION_ACTIONS_PATH',  APPLICATION_PATH . '/actions');
         define('APPLICATION_VIEWS_PATH',    APPLICATION_PATH . '/views');
         define('APPLICATION_CONFIG_PATH',   APPLICATION_PATH . '/config');
         define('APPLICATION_CORES_PATH',    APPLICATION_PATH . '/cores');
@@ -88,10 +89,8 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         $dispatcher->registerPlugin( new Plugin_View );
 
         ActiveRecord\Config::initialize(function($cfg) {
-            // $cfg->set_model_directory(__DIR__ . '/models');
-            $cfg->set_connections(array('development' => 'mysql://root:root@127.0.0.1/article'));
-            // you can change the default connection with the below
-            //$cfg->set_default_connection('production');
+            $cfg->set_connections(array('local' => 'mysql://root:root@127.0.0.1/article'));
+            $cfg->set_default_connection(\Yaf\ENVIRON);
         });
     }
 

@@ -6,23 +6,16 @@
  */
 class Controller_Article extends \Core\Controller\Index {
 
-    /**
-     * @url http://yourdomain/article/addcategory/name/news
-     */
-    public function AddCategoryAction($name) {
-        try {
-            $Category = new Model_Category(['name' => $name]);
-            $Category->save();
-        } catch (\ActiveRecord\DatabaseException $e ) {
-            throw new Exception("Category name exists.");
-        }
-    }
+    public $actions = [
+        "addcategory" => "actions/AddCategory.php",
+    ];
+
     /**
      * @url http://yourdomain/article/addcomment/
      */
     public function AddCommentAction() {
         $article_id = $this->getRequest()->getQuery('article_id');
-        $content     = $this->getRequest()->getQuery('content');
+        $content    = $this->getRequest()->getQuery('content');
         try {
             $Article = Model_Article::find($article_id);
         } catch (\ActiveRecord\RecordNotFound $e ) {
