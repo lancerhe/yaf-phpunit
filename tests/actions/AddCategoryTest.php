@@ -10,12 +10,6 @@ use Action_AddCategory;
 
 class AddCategoryTest extends TestCase {
 
-    public function setUp() {
-        parent::setUp();
-        if ( ! class_exists('\Action_AddCategory') )
-            require APPLICATION_ACTIONS_PATH . '/AddCategory.php';
-    }
-
     protected function _mockRequest() {
         return $this->getMockBuilder('\Yaf\Request\Http')
             ->disableOriginalConstructor()
