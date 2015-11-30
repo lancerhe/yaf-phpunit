@@ -8,17 +8,19 @@ use Yaf\Action_Abstract;
 
 class Action_AddCategory extends Action_Abstract {
 
+    public $ModelCategory;
+
+    public function init() {
+        $this->ModelCategory = new Model_Category;
+    }
+
     /**
      * @url http://yourdomain/article/addcategory/name/news
      */
     public function execute($name) {
-        // print_r($this->getRequest());
-        // print_r($this->getResponse());
-        // print_r($this->getView());
-        // exit();
         try {
-            $Category = new Model_Category(['name' => $name]);
-            $Category->save();
+            $this->ModelCategory->name = $name;
+            $this->ModelCategory->save();
         } catch (\ActiveRecord\DatabaseException $e ) {
             throw new Exception("Category name exists.");
         }
