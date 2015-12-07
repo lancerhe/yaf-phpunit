@@ -46,9 +46,14 @@ class AddCategoryTest extends TestCase {
 
         $this->setExpectedException("\Exception", "Category name exists");
 
-        $Action = new Action_AddCategory($this->_mockRequest(), $this->_mockResponse(), $this->_mockView());
+        $stubRequest = $this->_mockRequest();
+        $stubRequest->expects($this->any())
+            ->method('getQuery')
+            ->with($this->equalTo('name'))
+            ->will($this->returnValue('New CategoryName'));
+        $Action = new Action_AddCategory($stubRequest, $this->_mockResponse(), $this->_mockView());
         $Action->ModelCategory = $stubModelCategory;
-        $Action->execute('New CategoryName');
+        $Action->execute();
     }
 
     /**
@@ -67,8 +72,13 @@ class AddCategoryTest extends TestCase {
             ->with($this->equalTo('name'), $this->equalTo('New CategoryName'))
             ->will($this->returnValue('yes'));
 
-        $Action = new Action_AddCategory($this->_mockRequest(), $this->_mockResponse(), $this->_mockView());
+        $stubRequest = $this->_mockRequest();
+        $stubRequest->expects($this->any())
+            ->method('getQuery')
+            ->with($this->equalTo('name'))
+            ->will($this->returnValue('New CategoryName'));
+        $Action = new Action_AddCategory($stubRequest, $this->_mockResponse(), $this->_mockView());
         $Action->ModelCategory = $stubModelCategory;
-        $Action->execute('New CategoryName');
+        $Action->execute();
     }
 }

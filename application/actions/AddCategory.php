@@ -15,9 +15,10 @@ class Action_AddCategory extends Action_Abstract {
     }
 
     /**
-     * @url http://yourdomain/article/addcategory/name/news
+     * @url http://yourdomain/article/addcategory/?name=news
      */
-    public function execute($name) {
+    public function execute() {
+        $name = $this->getRequest()->getQuery('name');
         try {
             $this->ModelCategory->name = $name;
             $this->ModelCategory->save();
