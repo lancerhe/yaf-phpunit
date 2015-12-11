@@ -6,9 +6,21 @@
  */
 class Controller_Article extends \Core\Controller\Index {
 
-    public $actions = [
-        "addcategory" => "actions/AddCategory.php",
-    ];
+    public $ModelCategory;
+
+    public function init() {
+        $this->ModelCategory = new Model_Category;
+    }
+
+    public function AddCategoryAction() {
+        $name = $this->getRequest()->getQuery('name');
+        try {
+            $this->ModelCategory->name = $name;
+            $this->ModelCategory->save();
+        } catch (\ActiveRecord\DatabaseException $e ) {
+            throw new Exception("Category name exists.");
+        }
+    }
 
     /**
      * @url http://yourdomain/article/addcomment/

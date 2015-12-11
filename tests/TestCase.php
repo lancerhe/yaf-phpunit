@@ -23,8 +23,8 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 
     private function __setUpAutoload() {
         spl_autoload_register(function ($class_name) {
-            if ( strpos($class_name, 'Action_') !== false && ! class_exists( $class_name ) )
-                require APPLICATION_ACTIONS_PATH . '/' . str_replace("Action_", '', $class_name) . '.php';
+            if ( strpos($class_name, 'Controller_') !== false && ! class_exists( $class_name ) )
+                require APPLICATION_CONTROLLERS_PATH . '/' . str_replace("Controller_", '', $class_name) . '.php';
         });
     }
 
@@ -50,7 +50,7 @@ namespace Tests\TestCase;
 
 use Tests\TestCase;
 
-class Action extends TestCase {
+class Controller extends TestCase {
 
     public function setUp() {
         parent::setUp();
