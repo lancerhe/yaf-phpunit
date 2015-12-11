@@ -21,13 +21,6 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 
     }
 
-    private function __setUpAutoload() {
-        spl_autoload_register(function ($class_name) {
-            if ( strpos($class_name, 'Controller_') !== false && ! class_exists( $class_name ) )
-                require APPLICATION_CONTROLLERS_PATH . '/' . str_replace("Controller_", '', $class_name) . '.php';
-        });
-    }
-
     private function __setUpApplicationInit() {
         self::$_app  = \Yaf\Dispatcher::getInstance()->getApplication();
         self::$_view = \YafUnit\View\Simple::getInstance();
@@ -40,7 +33,6 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 
         $this->__setUpApplicationInit();
 
-        $this->__setUpAutoload();
         \Yaf\Dispatcher::getInstance()->registerPlugin( new \YafUnit\Plugin\View );
         \Yaf\Registry::set( 'ApplicationInit', true );
     }

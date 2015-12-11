@@ -13,7 +13,6 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
      * @return void
      */
     public function _initConst( \Yaf\Dispatcher $dispatcher ) {
-        define('APPLICATION_CONTROLLERS_PATH',  APPLICATION_PATH . '/controllers');
         define('APPLICATION_VIEWS_PATH',    APPLICATION_PATH . '/views');
         define('APPLICATION_CONFIG_PATH',   APPLICATION_PATH . '/config');
         define('APPLICATION_CORES_PATH',    APPLICATION_PATH . '/cores');
