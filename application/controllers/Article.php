@@ -6,11 +6,12 @@
  */
 class Controller_Article extends \Core\Controller\Index {
 
-    public $ModelCategory, $ModelArticle;
+    public $ModelCategory, $ModelArticle, $ModelComment;
 
     public function init() {
         $this->ModelCategory = new Model_Category;
         $this->ModelArticle  = new Model_Article;
+        $this->ModelComment  = new Model_Comment;
     }
 
     /**
@@ -29,7 +30,7 @@ class Controller_Article extends \Core\Controller\Index {
     }
 
     /**
-     * @url http://yourdomain/article/add/
+     * @url http://yourdomain/article/add/?category_id=4&subject=newst&content=content
      */
     public function AddAction() {
         $category_id = $this->getRequest()->getQuery('category_id');
@@ -43,18 +44,16 @@ class Controller_Article extends \Core\Controller\Index {
     }
 
     /**
-     * @url http://yourdomain/article/addcomment/
+     * @url http://yourdomain/article/addcomment/?article_id=4&content=content
      */
     public function AddCommentAction() {
         $article_id = $this->getRequest()->getQuery('article_id');
         $content    = $this->getRequest()->getQuery('content');
-        try {
-            $Article = Model_Article::find($article_id);
-        } catch (\ActiveRecord\RecordNotFound $e ) {
-            throw new Exception("Article not exists.");
-        }
 
-        $Comment = $Article->create_comment(["content" => $content]);
+        $Comment = $this->ModelComment->createByArticleId($article_id, ["content" => $content]);
+
+        $this->getView()->assign("content", $Comment->content);
+        $this->getView()->display("article/addcomment.html");
     }
 
 
