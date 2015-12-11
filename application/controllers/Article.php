@@ -20,6 +20,8 @@ class Controller_Article extends \Core\Controller\Index {
         } catch (\ActiveRecord\DatabaseException $e ) {
             throw new Exception("Category name exists.");
         }
+        $this->getView()->assign("name", $name);
+        $this->getView()->display("article/addcategory.html");
     }
 
     /**

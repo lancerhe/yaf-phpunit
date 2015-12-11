@@ -77,7 +77,15 @@ class AddCategoryTest extends TestCase {
             ->method('getQuery')
             ->with($this->equalTo('name'))
             ->will($this->returnValue('New CategoryName'));
-        $Controller = new Controller_Article($stubRequest, $this->_mockResponse(), $this->_mockView());
+        $stubView = $this->_mockView();
+        $stubView->expects($this->once())
+            ->method('assign')
+            ->with($this->equalTo('name'), $this->equalTo('New CategoryName'));
+        $stubView->expects($this->once())
+            ->method('display')
+            ->with($this->equalTo('article/addcategory.html'));
+
+        $Controller = new Controller_Article($stubRequest, $this->_mockResponse(), $stubView);
         $Controller->ModelCategory = $stubModelCategory;
         $Controller->AddCategoryAction();
     }
