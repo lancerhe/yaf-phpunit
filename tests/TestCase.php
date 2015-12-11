@@ -37,14 +37,3 @@ class TestCase extends \PHPUnit_Framework_TestCase {
         \Yaf\Registry::set( 'ApplicationInit', true );
     }
 }
-
-namespace Tests\TestCase;
-
-use Tests\TestCase;
-
-class Controller extends TestCase {
-
-    public function setUp() {
-        parent::setUp();
-    }
-}
