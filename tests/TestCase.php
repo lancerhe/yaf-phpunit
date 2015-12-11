@@ -36,4 +36,12 @@ class TestCase extends \PHPUnit_Framework_TestCase {
         \Yaf\Dispatcher::getInstance()->registerPlugin( new \YafUnit\Plugin\View );
         \Yaf\Registry::set( 'ApplicationInit', true );
     }
+
+    public function getApplication() {
+        return self::$_app;
+    }
+
+    public function getView() {
+        return self::$_view;
+    }
 }

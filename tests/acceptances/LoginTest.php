@@ -27,8 +27,8 @@ class LoginTest extends TestCase {
         $request = new Http("/login/status");
         \Core\Session::getInstance()->set('login', 0);
 
-        self::$_app->getDispatcher()->dispatch($request);
-        $this->assertEquals(0, self::$_view->login);
+        $this->getApplication()->getDispatcher()->dispatch($request);
+        $this->assertEquals(0, $this->getView()->login);
     }
 
 
@@ -40,8 +40,8 @@ class LoginTest extends TestCase {
         $request = new Http("/login/status");
         \Core\Session::getInstance()->login = 1;
 
-        self::$_app->getDispatcher()->dispatch($request);
-        $this->assertEquals(1, self::$_view->login);
+        $this->getApplication()->getDispatcher()->dispatch($request);
+        $this->assertEquals(1, $this->getView()->login);
     }
 
     /**
@@ -50,7 +50,7 @@ class LoginTest extends TestCase {
     public function assgin_login_page_url() {
         $request = new Http("/login.html");
 
-        self::$_app->getDispatcher()->dispatch($request);
-        $this->assertEquals('http://yourdomain/login.html', self::$_view->pageurl);
+        $this->getApplication()->getDispatcher()->dispatch($request);
+        $this->assertEquals('http://yourdomain/login.html', $this->getView()->pageurl);
     } 
 }
