@@ -6,12 +6,16 @@
  */
 class Controller_Article extends \Core\Controller\Index {
 
-    public $ModelCategory;
+    public $ModelCategory, $ModelArticle;
 
     public function init() {
         $this->ModelCategory = new Model_Category;
+        $this->ModelArticle  = new Model_Article;
     }
 
+    /**
+     * @url http://yourdomain/article/addcategory/?name=news
+     */
     public function AddCategoryAction() {
         $name = $this->getRequest()->getQuery('name');
         try {
@@ -22,6 +26,20 @@ class Controller_Article extends \Core\Controller\Index {
         }
         $this->getView()->assign("name", $name);
         $this->getView()->display("article/addcategory.html");
+    }
+
+    /**
+     * @url http://yourdomain/article/add/
+     */
+    public function AddAction() {
+        $category_id = $this->getRequest()->getQuery('category_id');
+        $subject     = $this->getRequest()->getQuery('subject');
+        $content     = $this->getRequest()->getQuery('content');
+
+        $Article = $this->ModelArticle->createByCategoryId($category_id, ["subject" => $subject, "content" => $content]);
+
+        $this->getView()->assign("subject", $Article->subject);
+        $this->getView()->display("article/add.html");
     }
 
     /**
@@ -37,22 +55,6 @@ class Controller_Article extends \Core\Controller\Index {
         }
 
         $Comment = $Article->create_comment(["content" => $content]);
-    }
-
-    /**
-     * @url http://yourdomain/article/add/
-     */
-    public function AddAction() {
-        $category_id = $this->getRequest()->getQuery('category_id');
-        $subject     = $this->getRequest()->getQuery('subject');
-        $content     = $this->getRequest()->getQuery('content');
-        try {
-            $Category = Model_Category::find($category_id);
-        } catch (\ActiveRecord\RecordNotFound $e ) {
-            throw new Exception("Category not exists.");
-        }
-        
-        $Article = $Category->create_article(["subject" => $subject, "content" => $content]);
     }
 
 

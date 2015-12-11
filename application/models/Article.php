@@ -18,4 +18,13 @@ class Model_Article extends ActiveRecord\Model {
             'class_name' => '\Model_Comment'
         ],
     ];
+
+    public function createByCategoryId($category_id, $row) {
+        try {
+            $Category = Model_Category::find($category_id);
+        } catch (\ActiveRecord\RecordNotFound $e ) {
+            throw new Exception("Category not exists.");
+        }
+        return $Category->create_article($row);
+    }
 }

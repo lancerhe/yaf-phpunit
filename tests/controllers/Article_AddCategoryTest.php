@@ -8,7 +8,7 @@ namespace Tests\TestCase\Controller;
 use Tests\TestCase;
 use Controller_Article;
 
-class AddCategoryTest extends TestCase {
+class Article_AddCategoryTest extends TestCase {
 
     protected function _mockRequest() {
         return $this->getMockBuilder('\Yaf\Request\Http')
@@ -59,7 +59,7 @@ class AddCategoryTest extends TestCase {
     /**
      * @test
      */
-    public function category_create() {
+    public function category_createand_assign_variables() {
         $stubModelCategory = $this->getMockBuilder('\Model_Category')
             ->disableOriginalConstructor()
             ->setMethods(['save', '__set'])
