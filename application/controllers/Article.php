@@ -1,8 +1,8 @@
 <?php
 /**
- * User Controller
+ * Article Controller
  * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-15
+ * @since  2015-11-11
  */
 class Controller_Article extends \Core\Controller\Index {
 

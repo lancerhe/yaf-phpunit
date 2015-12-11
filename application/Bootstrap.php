@@ -86,11 +86,6 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
      */
     public function _initPlugin( \Yaf\Dispatcher $dispatcher ) {
         $dispatcher->registerPlugin( new Plugin_View );
-
-        ActiveRecord\Config::initialize(function($cfg) {
-            $cfg->set_connections(array('local' => 'mysql://root:root@127.0.0.1/article'));
-            $cfg->set_default_connection(\Yaf\ENVIRON);
-        });
     }
 
 

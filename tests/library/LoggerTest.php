@@ -1,4 +1,9 @@
 <?php
+/**
+ * 单元测试用例 基础类库，mock系统函数
+ * @author Lancer He <lancer.he@gmail.com>
+ * @since  2015-11-22
+ */
 namespace Tests\TestCase\Library\Util;
 
 use Tests\TestCase;

@@ -1,5 +1,6 @@
 <?php
 /**
+ * 单元测试用例
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2015-11-22
  */

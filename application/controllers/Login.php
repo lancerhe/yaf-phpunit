@@ -14,15 +14,15 @@ class Controller_Login extends \Core\Controller {
      * 查看session中是否登陆 
      * @url http://yourdomain/login/status
      */
-    public function statusAction() {
-        if ( \Core\Session::getInstance()->get('login') ) {
-            $this->getView()->assign('login', 1);
-        } else {
-            $this->getView()->assign('login', 0);
-        }
+    public function StatusAction() {
+        $this->getView()->assign('login', \Core\Session::getInstance()->get('login') ? 1 : 0);
     }
 
-    public function parseAction() {
-        echo json_encode(array("value" => 200));
+    /**
+     * 登陆页 自定义路由
+     * @url http://yourdomain/login.html
+     */
+    public function IndexAction() {
+        $this->getView()->assign('pageurl', "http://yourdomain/login.html");
     }
 }
