@@ -85,7 +85,6 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
      * @return void
      */
     public function _initPlugin( \Yaf\Dispatcher $dispatcher ) {
-        $dispatcher->registerPlugin( new Plugin_View );
     }
 
 
@@ -95,7 +94,6 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
      * @return void
      */
     public function _initRoute( \Yaf\Dispatcher $dispatcher ) {
-        //注册路由
         $config = new \Yaf\Config\Ini( APPLICATION_CONFIG_PATH . "/routes.ini" );
         if ( empty($config->routes) )
             return ;

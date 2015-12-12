@@ -6,19 +6,37 @@
  */
 namespace Core\View;
 
-class Ajax extends \Yaf\View\Simple {
+use StdClass;
+use Yaf\View\Simple as Simple;
+
+class Ajax extends Simple {
+
+    public static function create() {
+        return new self(APPLICATION_MODULES_PATH . "/Ajax/views");
+    }
 
     /**
-     * Display ajax response
+     * response
      * @param  string  $message   Response message.
      * @param  array   $data      Response data.
      * @param  int     $code      Response code code, success: 0, error: exception code.
      * @return string
      */
-    public function display( $message, $data = array(), $code = 0 ) {
-        $this->assign('data',    $data);
-        $this->assign('code',    $code);
+    public function response( $message, $data = null, $code = 0 ) {
         $this->assign('message', $message);
+        $this->assign('data',    empty($data) ? new StdClass() : $data);
+        $this->assign('code',    intval($code));
+        $this->display();
+    }
+
+    /**
+     * Display page
+     * @param  string  $view_path  filepath, ex: production/index.html.
+     * @param  array   $tpl_vars   display variables.
+     * @return string
+     */
+    public function display( $view_path = '', $tpl_vars = null) {
+        header('Content-type: application/json');
         parent::display( 'response.html' );
     }
 
@@ -27,7 +45,7 @@ class Ajax extends \Yaf\View\Simple {
      * @return string
      */
     public function frameworkExceptionHandler( \Yaf\Exception $exception ) {
-        $this->display($exception->getMessage(), null, $exception->getCode());
+        $this->response($exception->getMessage(), null, $exception->getCode());
     }
 
     /**
@@ -35,6 +53,6 @@ class Ajax extends \Yaf\View\Simple {
      * @return string
      */
     public function defaultExceptionHandler( \Exception $exception ) {
-        $this->display($exception->getMessage(), null, $exception->getCode());
+        $this->response($exception->getMessage(), null, $exception->getCode());
     }
 }

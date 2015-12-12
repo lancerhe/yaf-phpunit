@@ -6,4 +6,18 @@
  */
 namespace Core;
 
-class Controller extends \Yaf\Controller_Abstract {}
+use Yaf\View\Simple;
+use Yaf\Dispatcher;
+
+class Controller extends \Yaf\Controller_Abstract {
+
+    public function init() {}
+
+    public function setView(Simple $View) {
+        if ( APPLICATION_IS_CLI ) 
+            return false;
+        $this->_view = $View;
+        Dispatcher::getInstance()->setView($View);
+        return true;
+    }
+}

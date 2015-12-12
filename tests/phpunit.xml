@@ -12,22 +12,5 @@
         <testsuite name="Library Test Suite">
             <directory>./</directory>
         </testsuite>
-    </testsuites><!-- 
-    <testsuites>
-        <testsuite name="Controllers">
-            <file>./controllers/UserTest.php</file>
-            <file>./controllers/NewTest.php</file>
-            <file>./controllers/LoginTest.php</file>
-        </testsuite>
-        <testsuite name="Models">
-            <file>./models/UserTest.php</file>
-            <file>./models/NewTest.php</file>
-        </testsuite>
-        <testsuite name="Libraries">
-            <file>./library/util/ValidateTest.php</file>
-        </testsuite>
-        <testsuite name="Services">
-            <file>./services/user/InfoTest.php</file>
-        </testsuite>
-    </testsuites> -->
+    </testsuites>
 </phpunit>

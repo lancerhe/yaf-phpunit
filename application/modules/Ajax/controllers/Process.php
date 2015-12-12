@@ -10,7 +10,7 @@ class Controller_Process extends Core\Controller\Ajax {
      * /ajax/process/save
      */
     public function SaveAction() {
-        $this->getView()->display(['action' => 'success'], 1);
+        $this->getView()->response("Save Successfully", ['username' => 'Lancer']);
     }
 
     /**

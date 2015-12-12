@@ -5,5 +5,10 @@
         "lancerhe/phpunit-mock": "dev-master",
         "lancerhe/php-yafunit" : "dev-master"
     }
+    , "require": {
+        "php": ">=5.4.0"
+        , "ext-runkit": "*"
+        , "ext-yaf": "2.3.6-dev"
+    }
     , "minimum-stability": "stable"
 }

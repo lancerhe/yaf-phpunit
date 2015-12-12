@@ -24,7 +24,7 @@ class LoginTest extends TestCase {
      * 未登陆的Seesion状态 
      */
     public function user_not_login() {
-        $request = new Http("/login/status");
+        $request = new Simple('Get', 'Index', 'Login', 'Status');
         \Core\Session::getInstance()->set('login', 0);
 
         $this->getApplication()->getDispatcher()->dispatch($request);
@@ -37,7 +37,7 @@ class LoginTest extends TestCase {
      * 已经登陆的Seesion状态 
      */
     public function user_has_login() {
-        $request = new Http("/login/status");
+        $request = new Simple('Get', 'Index', 'Login', 'Status');
         \Core\Session::getInstance()->login = 1;
 
         $this->getApplication()->getDispatcher()->dispatch($request);

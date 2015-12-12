@@ -7,4 +7,13 @@
  */
 namespace Core\Controller;
 
-class Ajax extends \Core\Controller {}
+use Core\Controller;
+use Core\View\Ajax as AjaxView;
+
+class Ajax extends Controller {
+
+    public function init() {
+        parent::init();
+        $this->setView(AjaxView::create());
+    }
+}

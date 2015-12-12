@@ -6,17 +6,35 @@
  */
 namespace Core\View;
 
-class Api extends \Yaf\View\Simple {
+use StdClass;
+use Yaf\View\Simple as Simple;
+
+class Api extends Simple {
+
+    public static function create() {
+        return new self(APPLICATION_MODULES_PATH . "/Api/views");
+    }
 
     /**
-     * Display api response
+     * response
      * @param  array  $data  Response data.
      * @param  int    $code  Response code code, success: 0, error: exception code.
      * @return string
      */
-    public function display( $data = array(), $code = 0 ) {
-        $this->assign('data', $data);
-        $this->assign('code', $code);
+    public function response( $data = null, $code = 0 ) {
+        $this->assign('data', empty($data) ? new StdClass() : $data);
+        $this->assign('code', intval($code));
+        $this->display();
+    }
+
+    /**
+     * Display page
+     * @param  string  $view_path  filepath, ex: production/index.html.
+     * @param  array   $tpl_vars   display variables.
+     * @return string
+     */
+    public function display( $view_path = '', $tpl_vars = null) {
+        header('Content-type: application/json');
         parent::display( 'response.html' );
     }
 
@@ -25,7 +43,7 @@ class Api extends \Yaf\View\Simple {
      * @return string
      */
     public function frameworkExceptionHandler( \Yaf\Exception $exception ) {
-        $this->display($exception->getMessage(), $exception->getCode());
+        $this->response(['message' => $exception->getMessage()], $exception->getCode());
     }
 
     /**
@@ -33,6 +51,6 @@ class Api extends \Yaf\View\Simple {
      * @return string
      */
     public function defaultExceptionHandler( \Exception $exception ) {
-        $this->display($exception->getMessage(), $exception->getCode());
+        $this->response(['message' => $exception->getMessage()], $exception->getCode());
     }
 }

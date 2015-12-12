@@ -7,4 +7,13 @@
  */
 namespace Core\Controller;
 
-class Api extends \Core\Controller {}
+use Core\Controller;
+use Core\View\Api as ApiView;
+
+class Api extends Controller {
+
+    public function init() {
+        parent::init();
+        $this->setView(ApiView::create());
+    }
+}

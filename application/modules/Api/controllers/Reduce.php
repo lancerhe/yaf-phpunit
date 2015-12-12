@@ -10,7 +10,16 @@ class Controller_Reduce extends Core\Controller\Api {
      * /api/reduce/memory
      */
     public function DiskAction() {
-        $this->getView()->display(['disk' => '2000MB'], 1);
+        $this->getView()->response(['disk' => '2000MB'], 1);
+    }
+
+    /**
+     * 一些特殊业务需要 ajax view
+     * /api/reduce/ajaxresponse
+     */
+    public function AjaxResponseAction() {
+        $this->_view = \Core\View\Ajax::create();
+        $this->getView()->response("Successfully", ['disk' => '2000MB']);
     }
 
     /**
