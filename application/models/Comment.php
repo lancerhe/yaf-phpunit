@@ -6,6 +6,7 @@
  */
 
 use ActiveRecord\Model;
+use ActiveRecord\RecordNotFound;
 
 class Model_Comment extends ActiveRecord\Model {
 
@@ -22,7 +23,7 @@ class Model_Comment extends ActiveRecord\Model {
     public function createByArticleId($article_id, $row) {
         try {
             $Article = Model_Article::find($article_id);
-        } catch (\ActiveRecord\RecordNotFound $e ) {
+        } catch ( RecordNotFound $e ) {
             throw new Exception("Article not exists.");
         }
         return $Article->create_comment($row);

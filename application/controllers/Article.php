@@ -9,6 +9,7 @@ class Controller_Article extends \Core\Controller\Index {
     public $ModelCategory, $ModelArticle, $ModelComment;
 
     public function init() {
+        parent::init();
         $this->ModelCategory = new Model_Category;
         $this->ModelArticle  = new Model_Article;
         $this->ModelComment  = new Model_Comment;

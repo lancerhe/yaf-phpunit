@@ -6,6 +6,7 @@
  */
 
 use ActiveRecord\Model;
+use ActiveRecord\RecordNotFound;
 
 class Model_Article extends ActiveRecord\Model {
 
@@ -22,7 +23,7 @@ class Model_Article extends ActiveRecord\Model {
     public function createByCategoryId($category_id, $row) {
         try {
             $Category = Model_Category::find($category_id);
-        } catch (\ActiveRecord\RecordNotFound $e ) {
+        } catch (RecordNotFound $e ) {
             throw new Exception("Category not exists.");
         }
         return $Category->create_article($row);

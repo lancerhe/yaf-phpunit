@@ -7,4 +7,5 @@
  */
 namespace Core\Controller;
 
-class Index extends \Core\Controller {}
+class Index extends \Core\Controller {
+}

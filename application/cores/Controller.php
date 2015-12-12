@@ -11,7 +11,9 @@ use Yaf\Dispatcher;
 
 class Controller extends \Yaf\Controller_Abstract {
 
-    public function init() {}
+    public function init() {
+        Dispatcher::getInstance()->disableView();
+    }
 
     public function setView(Simple $View) {
         if ( APPLICATION_IS_CLI ) 
