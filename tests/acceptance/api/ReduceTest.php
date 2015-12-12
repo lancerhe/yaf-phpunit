@@ -4,12 +4,12 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2015-12-12
  */
-namespace Tests\TestCase\Acceptance;
+namespace Tests\TestCase\Acceptance\Api;
 
 use Tests\TestCase;
 use YafUnit\Request\Http;
 
-class Api_ReduceTest extends TestCase {
+class ReduceTest extends TestCase {
 
     /**
      * @test

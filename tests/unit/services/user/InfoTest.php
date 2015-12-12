@@ -4,7 +4,7 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2014-10-26
  */
-namespace Tests\TestCase\Service\User;
+namespace Tests\TestCase\Unit\Service\User;
 
 use Tests\TestCase;
 

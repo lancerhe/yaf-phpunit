@@ -4,12 +4,12 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2015-12-12
  */
-namespace Tests\TestCase\Acceptance;
+namespace Tests\TestCase\Acceptance\Ajax;
 
 use Tests\TestCase;
 use YafUnit\Request\Http;
 
-class Ajax_ProcessTest extends TestCase {
+class ProcessTest extends TestCase {
 
     /**
      * @test

@@ -4,7 +4,7 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2015-11-22
  */
-namespace Tests\TestCase\Controller;
+namespace Tests\TestCase\Unit\Controller;
 
 use Tests\TestCase;
 use Controller_Article;

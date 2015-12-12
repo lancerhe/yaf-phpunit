@@ -4,7 +4,7 @@
  * @author Lancer He <lancer.he@gmail.com>
  * @since  2015-11-22
  */
-namespace Tests\TestCase\Library\Util;
+namespace Tests\TestCase\Unit\Library;
 
 use Tests\TestCase;
 
