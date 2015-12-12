@@ -7,7 +7,7 @@
 class Controller_Reduce extends Core\Controller\Api {
 
     /**
-     * /api/reduce/memory
+     * /api/reduce/disk
      */
     public function DiskAction() {
         $this->getView()->response(['disk' => '2000MB'], 1);
@@ -18,7 +18,7 @@ class Controller_Reduce extends Core\Controller\Api {
      * /api/reduce/ajaxresponse
      */
     public function AjaxResponseAction() {
-        $this->_view = \Core\View\Ajax::create();
+        $this->setView(\Core\View\Ajax::create());
         $this->getView()->response("Successfully", ['disk' => '2000MB']);
     }
 
@@ -26,6 +26,6 @@ class Controller_Reduce extends Core\Controller\Api {
      * /api/reduce/memory
      */
     public function MemoryAction() {
-        throw new Exception("Memory not exist.", 10020);
+        throw new Exception("Memory not exist.");
     }
 }
