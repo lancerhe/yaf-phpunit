@@ -45,3 +45,52 @@ class TestCase extends \PHPUnit_Framework_TestCase {
         return self::$_view;
     }
 }
+
+class DbTestCase extends TestCase {
+
+    protected static $_database;
+    
+    public function setUp() {
+        parent::setUp();
+        // var_dump(\Yaf\Registry::get('ApplicationDbInit'));
+        if ( ! \Yaf\Registry::get('ApplicationDbInit') ) {
+            $this->__setUpYafDatabase();
+        }
+    }
+
+    private function __setUpYafDatabase() {
+        $cfg = \ActiveRecord\Config::instance();
+        $cfg->set_connections([
+            'test'  => 'sqlite://memory',
+        ]);
+        \ActiveRecord\Config::initialize(function ($cfg) {
+            $cfg->set_default_connection("test");
+        });
+        $tables = $this->getDatabase()->tables();
+        foreach($tables as $table) {
+            if ('sqlite_sequence' == $table)
+                continue;
+            $this->getDatabase()->query("DROP TABLE {$table}");
+        }
+        $sqlcontent = file_get_contents(dirname(__FILE__) . '/acceptance/setup/sqlite.sql');
+        foreach(explode(";", $sqlcontent) as $sql) {
+            if (trim($sql) == '')
+                continue;
+            $this->getDatabase()->query(trim($sql));
+        }
+        \Yaf\Registry::set( 'ApplicationDbInit', true );
+    }
+
+    public function getDatabase() {
+        return \ActiveRecord\ConnectionManager::get_connection();
+    }
+
+    public function tearDown() {
+        $tables = $this->getDatabase()->tables();
+        foreach($tables as $table) {
+            if ( false !== strpos($table, 'sqlite_') )
+                continue;
+            $this->getDatabase()->query("DELETE FROM {$table}");
+        }
+    }
+}
