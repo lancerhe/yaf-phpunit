@@ -39,7 +39,6 @@ class Controller_Article extends \Core\Controller\Index {
         $content     = $this->getRequest()->getQuery('content');
 
         $Article = $this->ModelArticle->createByCategoryId($category_id, ["subject" => $subject, "content" => $content]);
-
         $this->getView()->assign("subject", $Article->subject);
         $this->getView()->display("article/add.html");
     }

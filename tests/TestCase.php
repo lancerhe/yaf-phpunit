@@ -52,20 +52,15 @@ class DbTestCase extends TestCase {
     
     public function setUp() {
         parent::setUp();
-        // var_dump(\Yaf\Registry::get('ApplicationDbInit'));
         if ( ! \Yaf\Registry::get('ApplicationDbInit') ) {
-            $this->__setUpYafDatabase();
+            $this->__setUpDatabase();
         }
     }
 
-    private function __setUpYafDatabase() {
-        $cfg = \ActiveRecord\Config::instance();
-        $cfg->set_connections([
-            'test'  => 'sqlite://memory',
-        ]);
-        \ActiveRecord\Config::initialize(function ($cfg) {
-            $cfg->set_default_connection("test");
-        });
+    private function __setUpDatabase() {
+        \ActiveRecord\Config::instance()->set_connections(['test' => 'sqlite://memory']);
+        \ActiveRecord\Config::instance()->set_default_connection("test");
+
         $tables = $this->getDatabase()->tables();
         foreach($tables as $table) {
             if ('sqlite_sequence' == $table)
@@ -91,6 +86,7 @@ class DbTestCase extends TestCase {
             if ( false !== strpos($table, 'sqlite_') )
                 continue;
             $this->getDatabase()->query("DELETE FROM {$table}");
+            $this->getDatabase()->query("DELETE FROM sqlite_sequence WHERE name = '{$table}';");
         }
     }
 }

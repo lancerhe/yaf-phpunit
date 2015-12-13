@@ -51,13 +51,8 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         spl_autoload_register(array($autoload, 'loader'));
         $dispatcher->autoload = $autoload;
 
-        $cfg = \ActiveRecord\Config::instance();
-        $cfg->set_connections([
-            'local' => 'mysql://root:root@127.0.0.1/article',
-        ]);
-        \ActiveRecord\Config::initialize(function ($cfg) {
-            $cfg->set_default_connection("local");
-        });
+        \ActiveRecord\Config::instance()->set_connections(['local' => 'mysql://root:root@127.0.0.1/article']);
+        \ActiveRecord\Config::instance()->set_default_connection("local");
     }
 
 
