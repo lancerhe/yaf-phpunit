@@ -6,7 +6,7 @@
     processIsolation="false"
     stopOnFailure="false"
     syntaxCheck="false"
-    bootstrap="./TestCase.php"
+    bootstrap="./bootstrap.php"
 >
     <testsuites>
         <testsuite name="Library Test Suite">
