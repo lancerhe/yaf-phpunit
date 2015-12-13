@@ -153,6 +153,17 @@ Util_Validate  => \Util_Validate
 
 ### About ORM
 默认使用 `php-activerecord` 作为ORM方式，验收测试时，数据模式为 `sqlite::memory:` 在内存中创建库表结构解耦数据库依赖。
+> 由于默认情况 `php-activerecord` 版本不支持 sqlite memory 模式，需要修改 `SqliteAdapter` 中 `__construct` 方法
+```
+// vendor/php-activerecord/php-activerecord/lib/adapters/SqliteAdapter.php  
+protected function __construct($info)
+    if ($info->host != 'memory' && !file_exists($info->host))
+      throw new DatabaseException("Could not find sqlite db: $info->host");
+    if ($info->host == 'memory')
+      $info->host = sprintf(":%s:", $info->host);
+    $this->connection = new PDO("sqlite:$info->host",null,null,static::$PDO_OPTIONS);
+}
+```
 
 ### More
 这个应用的设计初衷是为了实现基本的框架底层，规范框架命名和结构体系，定制自动化测试。
