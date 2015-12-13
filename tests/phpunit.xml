@@ -9,8 +9,11 @@
     bootstrap="./bootstrap.php"
 >
     <testsuites>
-        <testsuite name="Library Test Suite">
-            <directory>./</directory>
+        <testsuite name="unit">
+            <directory>./unit</directory>
+        </testsuite>
+        <testsuite name="acceptance">
+            <directory>./acceptance</directory>
         </testsuite>
     </testsuites>
 </phpunit>
