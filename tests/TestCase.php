@@ -58,7 +58,6 @@ class DbTestCase extends TestCase {
     }
 
     private function __setUpDatabase() {
-        \ActiveRecord\Config::instance()->set_connections(['test' => 'sqlite://memory']);
         \ActiveRecord\Config::instance()->set_default_connection("test");
 
         $tables = $this->getDatabase()->tables();

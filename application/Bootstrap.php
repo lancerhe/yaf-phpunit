@@ -34,6 +34,13 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         $dispatcher->config->application = $config->application;
     }
 
+    public function _initDatabase( \Yaf\Dispatcher $dispatcher ) {
+        $config = new \Yaf\Config\Ini(APPLICATION_CONFIG_PATH . '/database.ini', \Yaf\ENVIRON);
+
+        \ActiveRecord\Config::instance()->set_connections($config->database->toArray());
+        \ActiveRecord\Config::instance()->set_default_connection("master");
+    }
+
 
     /**
      * Initialize autoload library, like Core_Controller, Http_Request_Curl.
@@ -50,9 +57,6 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         ));
         spl_autoload_register(array($autoload, 'loader'));
         $dispatcher->autoload = $autoload;
-
-        \ActiveRecord\Config::instance()->set_connections(['local' => 'mysql://root:root@127.0.0.1/article']);
-        \ActiveRecord\Config::instance()->set_default_connection("local");
     }
 
 
