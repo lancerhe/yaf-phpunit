@@ -99,6 +99,8 @@ yaf.lowcase_path=1
 ```
 
 ### PHPUnit Testing
+这里说的 `验收测试` 是绕过GUI的测试。根据MVC的原理，Controller只需将正确的数据传递给View就算完成任务了。因此，我们在做测试时只需只需验证Controller是否把正确的数据传递给指定的View就可以了，至于View能否正确展现数据，那就要靠集成测试来验证了。
+
 测试分为 `验收测试` 与 `单元测试`，通过如下命令进行区别
 ```
 php ./vendor/bin/phpunit -c tests/phpunit.xml --testsuite acceptance

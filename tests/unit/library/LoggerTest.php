@@ -1,13 +1,15 @@
 <?php
-/**
- * 单元测试用例 基础类库，mock系统函数
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-11-22
- */
+
 namespace Tests\TestCase\Unit\Library;
 
 use Tests\TestCase;
 
+/**
+ * Class LoggerTest
+ *
+ * @package Tests\TestCase\Unit\Library
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class LoggerTest extends TestCase {
 
     /**

@@ -5,10 +5,13 @@
  * @since  2015-11-21
  */
 
+namespace Service\Repository;
+
 use ActiveRecord\Model;
 use ActiveRecord\RecordNotFound;
+use Exception;
 
-class Model_Article extends ActiveRecord\Model {
+class Article extends Model {
 
     static public $table_name = 'article';
 
@@ -16,13 +19,13 @@ class Model_Article extends ActiveRecord\Model {
         [
             'comment',
             'foreign_key' => 'article_id',
-            'class_name' => '\Model_Comment'
+            'class_name'  => '\Service\Repository\Comment',
         ],
     ];
 
     public function createByCategoryId($category_id, $row) {
         try {
-            $Category = Model_Category::find($category_id);
+            $Category = Category::find($category_id);
         } catch (RecordNotFound $e ) {
             throw new Exception("Category not exists.");
         }

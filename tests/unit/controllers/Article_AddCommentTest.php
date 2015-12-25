@@ -1,29 +1,40 @@
 <?php
-/**
- * 单元测试用例
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-11-22
- */
+
 namespace Tests\TestCase\Unit\Controller;
 
 use Tests\TestCase;
 use Controller_Article;
-use Model_Comment;
+use Comment;
 
+/**
+ * Class Article_AddCommentTest
+ *
+ * @package Tests\TestCase\Unit\Controller
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Article_AddCommentTest extends TestCase {
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     protected function _mockRequest() {
         return $this->getMockBuilder('\Yaf\Request\Http')
             ->disableOriginalConstructor()
             ->getMock();
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     protected function _mockResponse() {
         return $this->getMockBuilder('\Yaf\Response\Http')
             ->disableOriginalConstructor()
             ->getMock();
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     protected function _mockView() {
         return $this->getMockBuilder('\Yaf\View\Simple')
             ->disableOriginalConstructor()
@@ -36,7 +47,7 @@ class Article_AddCommentTest extends TestCase {
     public function create_comment_while_article_not_found() {
         $this->setExpectedException("\Exception", "Article not exists");
 
-        $stubModelComment = $this->getMockBuilder('\Model_Comment')
+        $stubModelComment = $this->getMockBuilder('\Service\Repository\Comment')
             ->disableOriginalConstructor()
             ->setMethods(['createByArticleId'])
             ->getMock();
@@ -54,8 +65,8 @@ class Article_AddCommentTest extends TestCase {
             )
             ->will($this->onConsecutiveCalls(2, 'c'));
 
-        $Controller = new Controller_Article($stubRequest, $this->_mockResponse(), $this->_mockView());
-        $Controller->ModelComment = $stubModelComment;
+        $Controller                    = new Controller_Article($stubRequest, $this->_mockResponse(), $this->_mockView());
+        $Controller->CommentRepository = $stubModelComment;
         $Controller->AddCommentAction();
     }
 
@@ -63,7 +74,7 @@ class Article_AddCommentTest extends TestCase {
      * @test
      */
     public function create_article_and_assign_variables() {
-        $stubCreatedComment = $this->getMockBuilder('\Model_Comment')
+        $stubCreatedComment = $this->getMockBuilder('\Service\Repository\Comment')
             ->disableOriginalConstructor()
             ->setMethods(['__get'])
             ->getMock();
@@ -72,7 +83,7 @@ class Article_AddCommentTest extends TestCase {
             ->with( $this->equalTo('content') )
             ->will( $this->returnValue("s_1") );
 
-        $stubModelComment = $this->getMockBuilder('\Model_Comment')
+        $stubModelComment = $this->getMockBuilder('\Service\Repository\Comment')
             ->disableOriginalConstructor()
             ->setMethods(['createByArticleId'])
             ->getMock();
@@ -98,8 +109,8 @@ class Article_AddCommentTest extends TestCase {
             ->method('display')
             ->with($this->equalTo('article/addcomment.html'));
 
-        $Controller = new Controller_Article($stubRequest, $this->_mockResponse(), $stubView);
-        $Controller->ModelComment  = $stubModelComment;
+        $Controller                    = new Controller_Article($stubRequest, $this->_mockResponse(), $stubView);
+        $Controller->CommentRepository = $stubModelComment;
         $Controller->AddCommentAction();
     }
 }
