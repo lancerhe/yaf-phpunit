@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\TestCase\Unit\Controller;
 
 use Tests\TestCase;

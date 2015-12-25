@@ -1,14 +1,15 @@
 <?php
-/**
- * 验收测试用例
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-12-12
- */
 namespace Tests\TestCase\Acceptance\Controller;
 
 use YafUnit\Request\Http;
 use Tests\DbTestCase;
 
+/**
+ * Class Article_AddCategoryTest
+ *
+ * @package Tests\TestCase\Acceptance\Controller
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Article_AddCategoryTest extends DbTestCase {
 
     public function setUpCategory() {

@@ -1,14 +1,15 @@
 <?php
-/**
- * 验收测试用例 Ajax Controller
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-12-12
- */
 namespace Tests\TestCase\Acceptance\Ajax;
 
 use Tests\TestCase;
 use YafUnit\Request\Http;
 
+/**
+ * Class ProcessTest
+ *
+ * @package Tests\TestCase\Acceptance\Ajax
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class ProcessTest extends TestCase {
 
     /**

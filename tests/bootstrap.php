@@ -3,12 +3,27 @@ namespace Tests;
 
 define('APPLICATION_NOT_RUN', true);
 
+/**
+ * Class TestCase
+ *
+ * @package Tests
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class TestCase extends \PHPUnit_Framework_TestCase {
 
+    /**
+     * @var \Yaf\Application
+     */
     protected static $_app;
 
+    /**
+     * @var \Yaf\View\Simple
+     */
     protected static $_view;
 
+    /**
+     * setUp
+     */
     public function setUp() {
         if ( ! \Yaf\Registry::get('ApplicationInit') ) {
             $this->__setUpYafApplication();
@@ -17,15 +32,24 @@ class TestCase extends \PHPUnit_Framework_TestCase {
         }
     }
 
+    /**
+     * setup php ini variables
+     */
     private function __setUpPHPIniVariables() {
 
     }
 
+    /**
+     * setup yaf application init
+     */
     private function __setUpApplicationInit() {
         self::$_app  = \Yaf\Dispatcher::getInstance()->getApplication();
         self::$_view = \YafUnit\View\Simple::getInstance();
     }
 
+    /**
+     * setup yaf
+     */
     private function __setUpYafApplication() {
         $this->__setUpPHPIniVariables();
         // Import application and bootstrap.
@@ -37,19 +61,32 @@ class TestCase extends \PHPUnit_Framework_TestCase {
         \Yaf\Registry::set( 'ApplicationInit', true );
     }
 
+    /**
+     * @return \Yaf\Application
+     */
     public function getApplication() {
         return self::$_app;
     }
 
+    /**
+     * @return \Yaf\View\Simple
+     */
     public function getView() {
         return self::$_view;
     }
 }
 
+/**
+ * Class DbTestCase
+ *
+ * @package Tests
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class DbTestCase extends TestCase {
 
-    protected static $_database;
-    
+    /**
+     * setup
+     */
     public function setUp() {
         parent::setUp();
         if ( ! \Yaf\Registry::get('ApplicationDbInit') ) {
@@ -57,6 +94,11 @@ class DbTestCase extends TestCase {
         }
     }
 
+    /**
+     * setup database connection and create table in memory
+     *
+     * @throws \ActiveRecord\DatabaseException
+     */
     private function __setUpDatabase() {
         \ActiveRecord\Config::instance()->set_default_connection("test");
 
@@ -75,10 +117,17 @@ class DbTestCase extends TestCase {
         \Yaf\Registry::set( 'ApplicationDbInit', true );
     }
 
+    /**
+     * @return \ActiveRecord\Connection
+     */
     public function getDatabase() {
         return \ActiveRecord\ConnectionManager::get_connection();
     }
 
+    /**
+     * teardown for delete table
+     * @throws \ActiveRecord\DatabaseException
+     */
     public function tearDown() {
         $tables = $this->getDatabase()->tables();
         foreach($tables as $table) {

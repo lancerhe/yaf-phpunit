@@ -1,17 +1,16 @@
 <?php
-/**
- * 验收测试用例 Login Controller Test 
- * 基于Session测试Demo，注：当Session初始化时候会分配一个新的sessid，存放在/tmp/下
- * 每次phpunit测试只会使用一个sesscli文件
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-15
- */
 namespace Tests\TestCase\Acceptance\Index;
 
 use Tests\TestCase;
 use YafUnit\Request\Simple;
 use YafUnit\Request\Http;
 
+/**
+ * Class LoginTest
+ *
+ * @package Tests\TestCase\Acceptance\Index
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class LoginTest extends TestCase {
 
     public function setUp() {

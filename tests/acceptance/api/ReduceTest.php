@@ -1,14 +1,15 @@
 <?php
-/**
- * 验收测试用例 Api Controller
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-12-12
- */
 namespace Tests\TestCase\Acceptance\Api;
 
 use Tests\TestCase;
 use YafUnit\Request\Http;
 
+/**
+ * Class ReduceTest
+ *
+ * @package Tests\TestCase\Acceptance\Api
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class ReduceTest extends TestCase {
 
     /**

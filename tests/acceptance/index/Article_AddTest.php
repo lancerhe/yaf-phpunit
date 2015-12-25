@@ -1,16 +1,20 @@
 <?php
-/**
- * 验收测试用例
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-12-12
- */
 namespace Tests\TestCase\Acceptance\Controller;
 
 use YafUnit\Request\Http;
 use Tests\DbTestCase;
 
+/**
+ * Class Article_AddTest
+ *
+ * @package Tests\TestCase\Acceptance\Controller
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Article_AddTest extends DbTestCase {
 
+    /**
+     * @throws \ActiveRecord\DatabaseException
+     */
     public function setUpCategory() {
         $this->getDatabase()->query("INSERT INTO category(id, name) VALUES('1', 'news')");
     }
