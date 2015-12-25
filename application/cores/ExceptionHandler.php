@@ -1,12 +1,9 @@
 <?php
-/**
- * 应用核心异常处理类  \Core\ExceptionHandler
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-17
- */
 namespace Core;
 
 /**
+ * Class ExceptionHandler 应用核心异常处理类
+ *
  * Yaf自带异常
  * define YAF\ERR\STARTUP_FAILED      512
  * define YAF\ERR\ROUTE_FAILED        513
@@ -18,6 +15,9 @@ namespace Core;
  * define YAF\ERR\CALL_FAILED         519
  * define YAF\ERR\AUTOLOAD_FAILED     520
  * define YAF\ERR\TYPE_ERROR          521
+ *
+ * @package Core
+ * @author  Lancer He <lancer.he@gmail.com>
  */
 class ExceptionHandler {
 

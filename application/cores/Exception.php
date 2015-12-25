@@ -1,11 +1,12 @@
 <?php
-/**
- * 应用核心异常类  \Core\Exception
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-17
- */
 namespace Core;
 
+/**
+ * Class Exception
+ *
+ * @package Core
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Exception extends \Exception{
 
     /**

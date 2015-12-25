@@ -1,12 +1,13 @@
 <?php
-/**
- * 应用核心会话类  \Core\Session 支持Session在WebServer和CLI下执行
- * CLI模式下会模拟一个session_id，同时在/tmp/下产生一个sesscli文件用来保存session信息
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-23
- */
 namespace Core;
 
+/**
+ * Class Session 应用核心会话类
+ * CLI模式下会模拟一个session_id，同时在/tmp/下产生一个sesscli文件用来保存session信息
+ *
+ * @package Core
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Session {
 
     /**

@@ -2,7 +2,6 @@
 /**
  * Bootstrap类中, 以_init开头的方法, 都会按顺序执行
  * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-15
  * @see    http://www.php.net/manual/en/class.yaf-bootstrap-abstract.php
  */
 class Bootstrap extends \Yaf\Bootstrap_Abstract{
@@ -34,7 +33,10 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         $dispatcher->config->application = $config->application;
     }
 
-    public function _initDatabase( \Yaf\Dispatcher $dispatcher ) {
+    /**
+     * @param \Yaf\Dispatcher $dispatcher
+     */
+    public function _initDatabase(\Yaf\Dispatcher $dispatcher ) {
         $config = new \Yaf\Config\Ini(APPLICATION_CONFIG_PATH . '/database.ini', \Yaf\ENVIRON);
 
         \ActiveRecord\Config::instance()->set_connections($config->database->toArray());

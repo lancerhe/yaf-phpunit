@@ -1,8 +1,8 @@
 <?php
 /**
- * Api Reduce Controller
+ * Class Controller_Reduce
+ *
  * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-05-24
  */
 class Controller_Reduce extends Core\Controller\Api {
 

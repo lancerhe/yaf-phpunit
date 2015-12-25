@@ -1,8 +1,9 @@
 <?php
+
 /**
- * Ajax Process Controller
+ * Class Controller_Process
+ *
  * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-05-24
  */
 class Controller_Process extends Core\Controller\Ajax {
 

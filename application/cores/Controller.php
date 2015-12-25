@@ -1,15 +1,17 @@
 <?php
-/**
- * 应用核心控制器类  \Core\Controller
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-17
- */
 namespace Core;
 
 use Yaf\View\Simple;
 use Yaf\Dispatcher;
+use \Yaf\Controller_Abstract;
 
-class Controller extends \Yaf\Controller_Abstract {
+/**
+ * Class Controller 应用核心控制器类
+ *
+ * @package Core
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
+class Controller extends Controller_Abstract {
 
     public function init() {
         Dispatcher::getInstance()->disableView();

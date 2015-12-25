@@ -1,11 +1,14 @@
 <?php
 /**
- * Login Controller
+ * Class Controller_Login
+ *
  * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-04-23
  */
 class Controller_Login extends \Core\Controller {
 
+    /**
+     * init
+     */
     public function init() {
         \Yaf\Dispatcher::getInstance()->disableView();
     }

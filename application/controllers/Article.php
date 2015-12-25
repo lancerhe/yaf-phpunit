@@ -1,19 +1,24 @@
 <?php
-/**
- * Article Controller
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-11-11
- */
-
 use Service\Repository\Category as Repository_Category;
 use Service\Repository\Article as Repository_Article;
 use Service\Repository\Comment as Repository_Comment;
 use Core\Controller\Index as Controller_Index;
 
+/**
+ * Class Controller_Article
+ *
+ * @author Lancer He <lancer.he@gmail.com>
+ */
 class Controller_Article extends Controller_Index {
 
+    /**
+     * @var
+     */
     public $CategoryRepository, $ArticleRepository, $CommentRepository;
 
+    /**
+     * init
+     */
     public function init() {
         parent::init();
         $this->CategoryRepository = new Repository_Category;
@@ -62,13 +67,14 @@ class Controller_Article extends Controller_Index {
         $this->getView()->display("article/addcomment.html");
     }
 
+    /**
 
     /**
      * 默认异常处理机制
-     * @param  Exception $exception
-     * @return
+     * @param $exception
+     * @param $view
      */
-    public static function defaultExceptionHandler( $exception, $view ) {
+    public static function defaultExceptionHandler($exception, $view) {
         echo "<pre>";
         print_r( $exception->getMessage() );
         echo " This error in controller. we must to render it.";

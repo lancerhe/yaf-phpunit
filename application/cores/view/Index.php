@@ -1,12 +1,15 @@
 <?php
-/**
- * 应用核心视图类  \Core\View\Index
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-05-24
- */
 namespace Core\View;
 
-class Index extends \Yaf\View\Simple {
+use Yaf\View\Simple as Simple;
+
+/**
+ * Class Index 应用核心视图类
+ *
+ * @package Core\View
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
+class Index extends Simple {
 
     /**
      * Display page

@@ -1,16 +1,20 @@
 <?php
-/**
- * 应用核心视图类  \Core\View\Api
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-05-24
- */
 namespace Core\View;
 
 use StdClass;
 use Yaf\View\Simple as Simple;
 
+/**
+ * Class Api 应用核心视图类
+ *
+ * @package Core\View
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Api extends Simple {
 
+    /**
+     * @return Api
+     */
     public static function create() {
         return new self(APPLICATION_MODULES_PATH . "/Api/views");
     }

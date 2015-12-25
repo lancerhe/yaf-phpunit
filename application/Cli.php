@@ -2,7 +2,6 @@
 /**
  * 命令行执行PHP 入口
  * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-05-19
  */
 
 set_time_limit(0);
