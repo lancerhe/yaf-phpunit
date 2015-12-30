@@ -158,7 +158,7 @@ Util_Validate  => \Util_Validate
 > 由于默认情况 `php-activerecord` 版本不支持 sqlite memory 模式，需要修改 `SqliteAdapter` 中 `__construct` 方法
 ```
 // vendor/php-activerecord/php-activerecord/lib/adapters/SqliteAdapter.php  
-protected function __construct($info)
+protected function __construct($info) {
     if ($info->host != 'memory' && !file_exists($info->host))
       throw new DatabaseException("Could not find sqlite db: $info->host");
     if ($info->host == 'memory')
