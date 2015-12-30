@@ -1,5 +1,5 @@
 <?php
-namespace Tests\TestCase\Unit\Library;
+namespace Tests\Unit\Library;
 
 use Tests\TestCase;
 

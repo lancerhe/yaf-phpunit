@@ -1,5 +1,5 @@
 <?php
-namespace Tests\TestCase\Acceptance\Index;
+namespace Tests\Acceptance\Index;
 
 use Tests\TestCase;
 use YafUnit\Request\Simple;

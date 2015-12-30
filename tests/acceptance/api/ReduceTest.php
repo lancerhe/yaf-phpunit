@@ -1,5 +1,5 @@
 <?php
-namespace Tests\TestCase\Acceptance\Api;
+namespace Tests\Acceptance\Api;
 
 use Tests\TestCase;
 use YafUnit\Request\Http;

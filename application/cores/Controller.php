@@ -18,10 +18,10 @@ class Controller extends Controller_Abstract {
     }
 
     public function setView(Simple $View) {
-        if ( APPLICATION_IS_CLI ) 
+        if ( APPLICATION_IS_CLI )
             return false;
-        $this->_view = $View;
         Dispatcher::getInstance()->setView($View);
+        $this->_view = $View;
         return true;
     }
 }

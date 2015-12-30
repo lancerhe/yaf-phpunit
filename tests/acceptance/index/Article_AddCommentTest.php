@@ -1,5 +1,5 @@
 <?php
-namespace Tests\TestCase\Acceptance\Controller;
+namespace Tests\Acceptance\Controller;
 
 use YafUnit\Request\Http;
 use Tests\DbTestCase;

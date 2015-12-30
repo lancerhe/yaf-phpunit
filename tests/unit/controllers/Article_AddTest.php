@@ -1,5 +1,5 @@
 <?php
-namespace Tests\TestCase\Unit\Controller;
+namespace Tests\Unit\Controller;
 
 use Tests\TestCase;
 use Controller_Article;

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\TestCase\Acceptance\Ajax;
+namespace Tests\Acceptance\Ajax;
 
 use Tests\TestCase;
 use YafUnit\Request\Http;
