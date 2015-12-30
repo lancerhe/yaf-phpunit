@@ -1,9 +1,9 @@
 <?php
 namespace Core;
 
-use Yaf\View\Simple;
-use Yaf\Dispatcher;
-use \Yaf\Controller_Abstract;
+use Yaf\View\Simple as Simple;
+use Yaf\Dispatcher as Dispatcher;
+use Yaf\Controller_Abstract as Controller_Abstract;
 
 /**
  * Class Controller 应用核心控制器类
