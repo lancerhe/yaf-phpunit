@@ -1,9 +1,9 @@
 {
     "require-dev": {
-        "phpunit/phpunit" : "4.4.*",
-        "php-activerecord/php-activerecord" : "1.1.2",
-        "lancerhe/phpunit-mock": "dev-master",
-        "lancerhe/php-yafunit" : "dev-master"
+        "phpunit/phpunit" : "4.4.*"
+        , "php-activerecord/php-activerecord" : "1.1.2"
+        , "lancerhe/phpunit-mock": "dev-master"
+        , "lancerhe/php-yafunit" : "1.1.0"
     }
     , "require": {
         "php": ">=5.4.0"
