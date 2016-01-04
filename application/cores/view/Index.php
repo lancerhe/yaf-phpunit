@@ -12,6 +12,13 @@ use Yaf\View\Simple as Simple;
 class Index extends Simple {
 
     /**
+     * @return Api
+     */
+    public static function create() {
+        return new self(APPLICATION_VIEWS_PATH);
+    }
+
+    /**
      * Display page
      * @param  string  $view_path  filepath, ex: production/index.html.
      * @param  array   $tpl_vars   display variables.

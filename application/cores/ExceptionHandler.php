@@ -1,6 +1,8 @@
 <?php
 namespace Core;
 
+use Core\View\Index;
+
 /**
  * Class ExceptionHandler 应用核心异常处理类
  *
@@ -36,6 +38,9 @@ class ExceptionHandler {
      * @return void
      */
     public function handler( $exception ) {
+        if ( get_class($this->getView()) == 'Yaf\View\Simple' ) {
+            \Yaf\Dispatcher::getInstance()->setView(Index::create());
+        }
         // 若是Yaf定义的异常被接收到
         if ( $exception instanceof \Yaf\Exception ) {
             $this->getView()->frameworkExceptionHandler( $exception );
