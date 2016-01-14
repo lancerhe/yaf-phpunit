@@ -12,16 +12,38 @@ use Yaf\Controller_Abstract as Controller_Abstract;
  * @author  Lancer He <lancer.he@gmail.com>
  */
 class Controller extends Controller_Abstract {
+    /**
+     * @var Simple
+     */
+    protected $_coreView = null;
 
+    /**
+     *
+     */
     public function init() {
         Dispatcher::getInstance()->disableView();
     }
 
+    /**
+     * @param Simple $View
+     * @return bool
+     */
     public function setView(Simple $View) {
         if ( APPLICATION_IS_CLI )
             return false;
+
+        $this->_coreView = $View;
         Dispatcher::getInstance()->setView($View);
-        $this->_view = $View;
         return true;
+    }
+
+    /**
+     * @return Simple
+     */
+    public function getView() {
+        if ( $this->_coreView instanceof Simple ) {
+            return $this->_coreView;
+        }
+        return parent::getView();
     }
 }
