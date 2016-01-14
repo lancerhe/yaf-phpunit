@@ -129,10 +129,12 @@ class DbTestCase extends TestCase {
      * @throws \ActiveRecord\DatabaseException
      */
     public function tearDown() {
-        $tables = $this->getDatabase()->tables();
+        $tables = $this->getDatabase()->query("SELECT name FROM sqlite_master WHERE type='table';")->fetchAll(\PDO::FETCH_ASSOC);
         foreach($tables as $table) {
+            $table = $table['name'];
             if ( false !== strpos($table, 'sqlite_') )
                 continue;
+
             $this->getDatabase()->query("DELETE FROM {$table}");
             $this->getDatabase()->query("DELETE FROM sqlite_sequence WHERE name = '{$table}';");
         }
