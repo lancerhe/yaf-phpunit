@@ -23,5 +23,4 @@ for folder in "public" "application" "tests"; do
     find $folder -name '*.php' | xargs sed -i "" 's/Yaf\\Response\\Cli/Yaf_Response_Cli/g'
     find $folder -name '*.php' | xargs sed -i "" 's/Yaf\\Router/Yaf_Router/g'
     find $folder -name '*.php' | xargs sed -i "" 's/Yaf\\Exception/Yaf_Exception/g'
-    find $folder -name '*.php' | xargs sed -i "" 's/Yaf\\ENVIRON/YAF_ENVIRON/g'
 done
