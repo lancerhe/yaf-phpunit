@@ -1,6 +1,5 @@
 <?php
 namespace Core;
-
 /**
  * Class ClassLoader 应用核心自动装载类
  *
@@ -14,7 +13,6 @@ class ClassLoader {
      * @var array
      */
     protected $_mapper = [];
-
     /**
      * is class could be load
      *

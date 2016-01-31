@@ -2,7 +2,9 @@
 namespace Core\View;
 
 use StdClass;
+use Exception;
 use Yaf\View\Simple as Simple;
+use Yaf\Exception as ApplicationException;
 
 /**
  * Class Api 应用核心视图类
@@ -11,7 +13,6 @@ use Yaf\View\Simple as Simple;
  * @author  Lancer He <lancer.he@gmail.com>
  */
 class Api extends Simple {
-
     /**
      * @return Api
      */
@@ -20,41 +21,41 @@ class Api extends Simple {
     }
 
     /**
-     * response
-     * @param  array  $data  Response data.
-     * @param  int    $code  Response code code, success: 0, error: exception code.
-     * @return string
+     * @param null   $data    Response data.
+     * @param int    $code    Response code code, success: 0, error: exception code.
+     * @param string $message Response error message.
      */
-    public function response( $data = null, $code = 0 ) {
+    public function response($data = null, $code = 0, $message = '') {
+        $this->assign('code', strval($code));
+        $this->assign('message', $message);
         $this->assign('data', empty($data) ? new StdClass() : $data);
-        $this->assign('code', intval($code));
+        $this->assign('time', strval(time()));
         $this->display();
     }
 
     /**
      * Display page
-     * @param  string  $view_path  filepath, ex: production/index.html.
-     * @param  array   $tpl_vars   display variables.
+     *
+     * @param  string $tpl      file_path, ex: production/index.html.
+     * @param  array  $tpl_vars display variables.
      * @return string
      */
-    public function display( $view_path = '', $tpl_vars = null) {
+    public function display($tpl = '', $tpl_vars = null) {
         header('Content-type: application/json');
-        parent::display( 'response.html' );
+        exit(json_encode($this->_tpl_vars));
     }
 
     /**
-     * 框架错误模板渲染
-     * @return string
+     * @param ApplicationException $exception
      */
-    public function frameworkExceptionHandler( \Yaf\Exception $exception ) {
-        $this->response(['message' => $exception->getMessage()], $exception->getCode());
+    public function frameworkExceptionHandler(ApplicationException $exception) {
+        $this->response($exception->getMessage(), null, $exception->getCode());
     }
 
     /**
-     * 自定义级别异常模板渲染
-     * @return string
+     * @param Exception $exception
      */
-    public function defaultExceptionHandler( \Exception $exception ) {
-        $this->response(['message' => $exception->getMessage()], $exception->getCode());
+    public function defaultExceptionHandler(Exception $exception) {
+        $this->response($exception->getMessage(), null, $exception->getCode());
     }
 }

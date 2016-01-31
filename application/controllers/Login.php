@@ -1,11 +1,12 @@
 <?php
+use Core\Controller;
+
 /**
  * Class Controller_Login
  *
  * @author Lancer He <lancer.he@gmail.com>
  */
-class Controller_Login extends \Core\Controller {
-
+class Controller_Login extends Controller {
     /**
      * init
      */
@@ -14,7 +15,8 @@ class Controller_Login extends \Core\Controller {
     }
 
     /**
-     * 查看session中是否登陆 
+     * 查看session中是否登陆
+     *
      * @url http://yourdomain/login/status
      */
     public function StatusAction() {
@@ -23,6 +25,7 @@ class Controller_Login extends \Core\Controller {
 
     /**
      * 登陆页 自定义路由
+     *
      * @url http://yourdomain/login.html
      */
     public function IndexAction() {

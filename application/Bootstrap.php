@@ -1,113 +1,86 @@
 <?php
+use Yaf\Bootstrap_Abstract as Bootstrap_Abstract;
+use Yaf\Dispatcher as Dispatcher;
+use Yaf\Config\Ini as ConfigIni;
+use Yaf\Loader as Loader;
+use Core\ExceptionHandler;
+use ActiveRecord\Config as ActiveRecordConfig;
+
 /**
  * Bootstrap类中, 以_init开头的方法, 都会按顺序执行
+ *
  * @author Lancer He <lancer.he@gmail.com>
  * @see    http://www.php.net/manual/en/class.yaf-bootstrap-abstract.php
  */
-class Bootstrap extends \Yaf\Bootstrap_Abstract{
-
+class Bootstrap extends Bootstrap_Abstract {
     /**
-     * Initialize const.
-     * @param  \Yaf\Dispatcher $dispatcher
-     * @return void
+     * @param Dispatcher $dispatcher
      */
-    public function _initConst( \Yaf\Dispatcher $dispatcher ) {
-        define('APPLICATION_VIEWS_PATH',    APPLICATION_PATH . '/views');
-        define('APPLICATION_CONFIG_PATH',   APPLICATION_PATH . '/config');
-        define('APPLICATION_CORES_PATH',    APPLICATION_PATH . '/cores');
-        define('APPLICATION_SERVICES_PATH', APPLICATION_PATH . '/services');
-        define('APPLICATION_LIBRARY_PATH',  APPLICATION_PATH . '/library');
-        define('APPLICATION_MODULES_PATH',  APPLICATION_PATH . '/modules');
-    }
-
-
-    /**
-     * Initialize config.
-     * @param  \Yaf\Dispatcher $dispatcher
-     * @return void
-     */
-    public function _initConfig( \Yaf\Dispatcher $dispatcher ) {
-        $config = $dispatcher->getApplication()->getConfig();
-        // save config to dispatcher
-        $dispatcher->config = new \Yaf\Config\Simple(array(), false);
-        $dispatcher->config->application = $config->application;
+    public function _initConst(Dispatcher $dispatcher) {
+        define('APPLICATION_VIEWS_PATH',      APPLICATION_PATH . '/views');
+        define('APPLICATION_CONFIG_PATH',     APPLICATION_PATH . '/config');
+        define('APPLICATION_CORES_PATH',      APPLICATION_PATH . '/cores');
+        define('APPLICATION_SERVICES_PATH',   APPLICATION_PATH . '/services');
+        define('APPLICATION_LIBRARY_PATH',    APPLICATION_PATH . '/library');
+        define('APPLICATION_MODULES_PATH',    APPLICATION_PATH . '/modules');
+        define('APPLICATION_ENVIRON_LOCAL',   APPLICATION_ENVIRON === 'local');
+        define('APPLICATION_ENVIRON_TEST',    APPLICATION_ENVIRON === 'test');
+        define('APPLICATION_ENVIRON_PRODUCT', APPLICATION_ENVIRON === 'product');
     }
 
     /**
-     * @param \Yaf\Dispatcher $dispatcher
+     * @param Dispatcher $dispatcher
      */
-    public function _initDatabase(\Yaf\Dispatcher $dispatcher ) {
-        $config = new \Yaf\Config\Ini(APPLICATION_CONFIG_PATH . '/database.ini', \Yaf\ENVIRON);
-
-        \ActiveRecord\Config::instance()->set_connections($config->database->toArray());
-        \ActiveRecord\Config::instance()->set_default_connection("master");
+    public function _initDatabase(Dispatcher $dispatcher) {
+        $config = new ConfigIni(APPLICATION_CONFIG_PATH . '/database.ini', APPLICATION_ENVIRON);
+        ActiveRecordConfig::instance()->set_connections($config->database->toArray());
+        ActiveRecordConfig::instance()->set_default_connection("master");
     }
 
-
     /**
-     * Initialize autoload library, like Core_Controller, Http_Request_Curl.
-     * @param  \Yaf\Dispatcher $dispatcher
-     * @return void
+     * @param Dispatcher $dispatcher
      */
-    public function _initAutoload( \Yaf\Dispatcher $dispatcher) {
-        \Yaf\Loader::getInstance()->import(APPLICATION_CORES_PATH . '/ClassLoader.php');
-
+    public function _initAutoload(Dispatcher $dispatcher) {
+        Loader::getInstance()->import(APPLICATION_CORES_PATH . '/ClassLoader.php');
         $autoload = new \Core\ClassLoader();
-        $autoload->addClassMap(array(
+        $autoload->addClassMap([
             'Service' => APPLICATION_SERVICES_PATH,
             'Core'    => APPLICATION_CORES_PATH,
-        ));
-        spl_autoload_register(array($autoload, 'loader'));
+        ]);
+        spl_autoload_register([$autoload, 'loader']);
         $dispatcher->autoload = $autoload;
     }
 
-
     /**
-     * Initialize custom exception handler.
-     * @param  \Yaf\Dispatcher $dispatcher
-     * @return void
+     * @param Dispatcher $dispatcher
      */
-    public function _initException( \Yaf\Dispatcher $dispatcher ) {
+    public function _initException(Dispatcher $dispatcher) {
         // 抛出异常，不使用\Yaf\ErrorController接收，通过\Core\ExceptionHandler处理
-        \Yaf\Dispatcher::getInstance()->throwException(true);
-        \Yaf\Dispatcher::getInstance()->catchException(false);
-        new \Core\ExceptionHandler();
+        $dispatcher->throwException(true);
+        $dispatcher->catchException(false);
+        new ExceptionHandler();
     }
 
-
     /**
-     * Initialize locate library.
-     * @param \Yaf\Dispatcher $dispatcher
-     * @return void
+     * @param Dispatcher $dispatcher
      */
-    public function _initLibrary( \Yaf\Dispatcher $dispatcher ) {
-        //注册本地类前缀
-        $namespace = $dispatcher->config->application->library->localnamespace;
+    public function _initLibrary(Dispatcher $dispatcher) {
+        $namespace = $dispatcher->getApplication()->getConfig()->application->library->localnamespace;
         $namespace = explode(',', $namespace);
-        \Yaf\Loader::getInstance()->registerLocalNamespace( $namespace );
+        Loader::getInstance()->registerLocalNamespace($namespace);
     }
 
-
     /**
-     * Initialize plugin.
-     * @param \Yaf\Dispatcher $dispatcher
-     * @return void
+     * @param Dispatcher $dispatcher
      */
-    public function _initPlugin( \Yaf\Dispatcher $dispatcher ) {
+    public function _initPlugin(Dispatcher $dispatcher) {
     }
 
-
     /**
-     * Initialize router.
-     * @param \Yaf\Dispatcher $dispatcher
-     * @return void
+     * @param Dispatcher $dispatcher
      */
-    public function _initRoute( \Yaf\Dispatcher $dispatcher ) {
-        $config = new \Yaf\Config\Ini( APPLICATION_CONFIG_PATH . "/routes.ini" );
-        if ( empty($config->routes) )
-            return ;
-
-        $dispatcher->config->routes = $config->routes;
+    public function _initRoute(Dispatcher $dispatcher) {
+        $config = new ConfigIni(APPLICATION_CONFIG_PATH . "/routes.ini");
         $dispatcher->getRouter()->addConfig($config->routes);
     }
 }

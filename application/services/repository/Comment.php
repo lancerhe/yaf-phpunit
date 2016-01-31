@@ -1,28 +1,38 @@
 <?php
-/**
- * Comment Model
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-11-21
- */
-
 namespace Service\Repository;
 
 use ActiveRecord\Model;
 use ActiveRecord\RecordNotFound;
 use Exception;
 
+/**
+ * Class Comment
+ *
+ * @package Service\Repository
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Comment extends Model {
-
-    static public $table_name = 'comment';
-
-    static public $belongs_to = [
+    /**
+     * @var string
+     */
+    public static $table_name = 'comment';
+    /**
+     * @var array
+     */
+    public static $belongs_to = [
         [
             'article',
             'foreign_key' => 'article_id',
-            'class_name'  => '\Service\Repository\Article'
-        ]
+            'class_name'  => '\Service\Repository\Article',
+        ],
     ];
 
+    /**
+     * @param $article_id
+     * @param $row
+     * @return Comment
+     * @throws Exception
+     */
     public function createByArticleId($article_id, $row) {
         try {
             $Article = Article::find($article_id);

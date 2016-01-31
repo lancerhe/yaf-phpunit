@@ -2,6 +2,7 @@
 namespace Core;
 
 use Yaf\View\Simple as Simple;
+use Yaf\Request\Http as Http;
 use Yaf\Dispatcher as Dispatcher;
 use Yaf\Controller_Abstract as Controller_Abstract;
 
@@ -15,10 +16,14 @@ class Controller extends Controller_Abstract {
     /**
      * @var Simple
      */
-    protected $_coreView = null;
+    protected $_view;
+    /**
+     * @var Http
+     */
+    protected $_request;
 
     /**
-     *
+     * initial
      */
     public function init() {
         Dispatcher::getInstance()->disableView();
@@ -26,24 +31,10 @@ class Controller extends Controller_Abstract {
 
     /**
      * @param Simple $View
-     * @return bool
      */
     public function setView(Simple $View) {
-        if ( APPLICATION_IS_CLI )
-            return false;
-
-        $this->_coreView = $View;
+        if ( APPLICATION_IS_CLI ) return;
+        $this->_view = $View;
         Dispatcher::getInstance()->setView($View);
-        return true;
-    }
-
-    /**
-     * @return Simple
-     */
-    public function getView() {
-        if ( $this->_coreView instanceof Simple ) {
-            return $this->_coreView;
-        }
-        return parent::getView();
     }
 }

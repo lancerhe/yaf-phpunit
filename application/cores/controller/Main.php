@@ -2,20 +2,20 @@
 namespace Core\Controller;
 
 use Core\Controller;
-use Core\View\Api as ApiView;
+use Core\View\Main as MainView;
 
 /**
- * Class Api 接口端请求控制器基类
+ * Class Main Web请求页面级控制器基类
  *
  * @package Core\Controller
  * @author  Lancer He <lancer.he@gmail.com>
  */
-class Api extends Controller {
+class Main extends Controller {
     /**
      * init
      */
     public function init() {
         parent::init();
-        $this->setView(ApiView::create());
+        $this->setView(MainView::create());
     }
 }

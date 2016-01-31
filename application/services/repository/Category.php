@@ -1,23 +1,27 @@
 <?php
-/**
- * Category Model
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-11-22
- */
-
 namespace Service\Repository;
 
 use ActiveRecord\Model;
 
+/**
+ * Class Category
+ *
+ * @package Service\Repository
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Category extends Model {
-
-    static public $table_name = 'category';
-
-    static public $has_many = [
+    /**
+     * @var string
+     */
+    public static $table_name = 'category';
+    /**
+     * @var array
+     */
+    public static $has_many = [
         [
             'article',
             'foreign_key' => 'category_id',
-            'class_name'  => '\Service\Repository\Article'
-        ]
+            'class_name'  => '\Service\Repository\Article',
+        ],
     ];
 }

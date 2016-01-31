@@ -6,7 +6,6 @@
  * @author Lancer He <lancer.he@gmail.com>
  */
 class Controller_Process extends Core\Controller\Ajax {
-
     /**
      * /ajax/process/save
      */

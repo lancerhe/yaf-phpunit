@@ -2,19 +2,27 @@
 use Service\Repository\Category as Repository_Category;
 use Service\Repository\Article as Repository_Article;
 use Service\Repository\Comment as Repository_Comment;
-use Core\Controller\Index as Controller_Index;
+use Core\Controller\Main as Controller_Main;
+use Core\View\Main as MainView;
 
 /**
  * Class Controller_Article
  *
  * @author Lancer He <lancer.he@gmail.com>
  */
-class Controller_Article extends Controller_Index {
-
+class Controller_Article extends Controller_Main {
     /**
-     * @var
+     * @var Repository_Category
      */
-    public $CategoryRepository, $ArticleRepository, $CommentRepository;
+    public $CategoryRepository;
+    /**
+     * @var Repository_Article
+     */
+    public $ArticleRepository;
+    /**
+     * @var Repository_Comment
+     */
+    public $CommentRepository;
 
     /**
      * init
@@ -30,11 +38,11 @@ class Controller_Article extends Controller_Index {
      * @url http://yourdomain/article/addcategory/?name=news
      */
     public function AddCategoryAction() {
-        $name = $this->getRequest()->getQuery('name');
+        $name = $this->_request->getQuery('name');
         try {
             $this->CategoryRepository->name = $name;
             $this->CategoryRepository->save();
-        } catch (\ActiveRecord\DatabaseException $e ) {
+        } catch ( \ActiveRecord\DatabaseException $e ) {
             throw new Exception("Category name exists.");
         }
         $this->getView()->assign("name", $name);
@@ -45,11 +53,10 @@ class Controller_Article extends Controller_Index {
      * @url http://yourdomain/article/add/?category_id=4&subject=newst&content=content
      */
     public function AddAction() {
-        $category_id = $this->getRequest()->getQuery('category_id');
-        $subject     = $this->getRequest()->getQuery('subject');
-        $content     = $this->getRequest()->getQuery('content');
-
-        $Article = $this->ArticleRepository->createByCategoryId($category_id, ["subject" => $subject, "content" => $content]);
+        $category_id = $this->_request->getQuery('category_id');
+        $subject     = $this->_request->getQuery('subject');
+        $content     = $this->_request->getQuery('content');
+        $Article     = $this->ArticleRepository->createByCategoryId($category_id, ["subject" => $subject, "content" => $content]);
         $this->getView()->assign("subject", $Article->subject);
         $this->getView()->display("article/add.html");
     }
@@ -58,26 +65,19 @@ class Controller_Article extends Controller_Index {
      * @url http://yourdomain/article/addcomment/?article_id=4&content=content
      */
     public function AddCommentAction() {
-        $article_id = $this->getRequest()->getQuery('article_id');
-        $content    = $this->getRequest()->getQuery('content');
-
-        $Comment = $this->CommentRepository->createByArticleId($article_id, ["content" => $content]);
-
+        $article_id = $this->_request->getQuery('article_id');
+        $content    = $this->_request->getQuery('content');
+        $Comment    = $this->CommentRepository->createByArticleId($article_id, ["content" => $content]);
         $this->getView()->assign("content", $Comment->content);
         $this->getView()->display("article/addcomment.html");
     }
 
     /**
-
-    /**
-     * 默认异常处理机制
-     * @param $exception
-     * @param $view
+     * @param Exception $exception
+     * @param MainView  $view
      */
-    public static function defaultExceptionHandler($exception, $view) {
-        echo "<pre>";
-        print_r( $exception->getMessage() );
-        echo " This error in controller. we must to render it.";
-        echo "</pre>";
+    public static function defaultExceptionHandler(Exception $exception, MainView $view) {
+        $view->defaultExceptionHandler($exception);
+        echo sprintf("<p><font color='#008b8b'>Triggered <strong>defaultExceptionHandler</strong> in the controller: Controller_Article.</font> </p>");
     }
 }

@@ -11,12 +11,11 @@ use Core\Exception\RequestMethodException;
  * @author  Lancer He <lancer.he@gmail.com>
  */
 class Cli extends Controller {
-
     /**
      * Only request by cli mode.
      */
     public function init() {
-        if ( ! APPLICATION_IS_CLI ) 
+        if ( ! APPLICATION_IS_CLI )
             throw new RequestMethodException();
     }
 }

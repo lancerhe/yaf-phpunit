@@ -11,7 +11,6 @@ use Core\View\Ajax as AjaxView;
  * @author  Lancer He <lancer.he@gmail.com>
  */
 class Ajax extends Controller {
-
     /**
      * init
      */

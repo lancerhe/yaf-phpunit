@@ -1,21 +1,25 @@
 <?php
-/**
- * Article Model
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2015-11-21
- */
-
 namespace Service\Repository;
 
 use ActiveRecord\Model;
 use ActiveRecord\RecordNotFound;
 use Exception;
 
+/**
+ * Class Article
+ *
+ * @package Service\Repository
+ * @author  Lancer He <lancer.he@gmail.com>
+ */
 class Article extends Model {
-
-    static public $table_name = 'article';
-
-    static public $has_many = [
+    /**
+     * @var string
+     */
+    public static $table_name = 'article';
+    /**
+     * @var array
+     */
+    public static $has_many = [
         [
             'comment',
             'foreign_key' => 'article_id',
@@ -23,10 +27,16 @@ class Article extends Model {
         ],
     ];
 
+    /**
+     * @param $category_id
+     * @param $row
+     * @return Article
+     * @throws Exception
+     */
     public function createByCategoryId($category_id, $row) {
         try {
             $Category = Category::find($category_id);
-        } catch (RecordNotFound $e ) {
+        } catch ( RecordNotFound $e ) {
             throw new Exception("Category not exists.");
         }
         return $Category->create_article($row);

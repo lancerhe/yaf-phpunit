@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Class Controller_Reduce
  *
  * @author Lancer He <lancer.he@gmail.com>
  */
 class Controller_Reduce extends Core\Controller\Api {
-
     /**
      * /api/reduce/disk
      */
