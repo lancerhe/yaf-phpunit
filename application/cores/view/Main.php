@@ -35,13 +35,14 @@ class Main extends Simple {
      * @param ApplicationException $exception
      */
     public function frameworkExceptionHandler(ApplicationException $exception) {
+        $this->setScriptPath(APPLICATION_VIEWS_PATH . '/error');
         if ( APPLICATION_ENVIRON_PRODUCT ) {
             header("HTTP/1.1 404 Not Found");
-            $this->display('error/404.html');
+            $this->display('404.html');
         } else {
             $this->assign('class', get_class($exception));
             $this->assign('message', $exception->getMessage());
-            $this->display('error/debug.html');
+            $this->display('debug.html');
         }
     }
 
@@ -49,7 +50,8 @@ class Main extends Simple {
      * @param Exception $exception
      */
     public function defaultExceptionHandler(Exception $exception) {
+        $this->setScriptPath(APPLICATION_VIEWS_PATH . '/error');
         $this->assign('message', $exception->getMessage());
-        $this->display('error/default.html');
+        $this->display('default.html');
     }
 }
