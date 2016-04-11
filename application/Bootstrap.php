@@ -17,14 +17,14 @@ class Bootstrap extends Bootstrap_Abstract {
      * @param Dispatcher $dispatcher
      */
     public function _initConst(Dispatcher $dispatcher) {
-        define('APPLICATION_VIEWS_PATH',      APPLICATION_PATH . '/views');
-        define('APPLICATION_CONFIG_PATH',     APPLICATION_PATH . '/config');
-        define('APPLICATION_CORES_PATH',      APPLICATION_PATH . '/cores');
-        define('APPLICATION_SERVICES_PATH',   APPLICATION_PATH . '/services');
-        define('APPLICATION_LIBRARY_PATH',    APPLICATION_PATH . '/library');
-        define('APPLICATION_MODULES_PATH',    APPLICATION_PATH . '/modules');
-        define('APPLICATION_ENVIRON_LOCAL',   APPLICATION_ENVIRON === 'local');
-        define('APPLICATION_ENVIRON_TEST',    APPLICATION_ENVIRON === 'test');
+        define('APPLICATION_VIEWS_PATH', APPLICATION_PATH . '/views');
+        define('APPLICATION_CONFIG_PATH', APPLICATION_PATH . '/config');
+        define('APPLICATION_CORES_PATH', APPLICATION_PATH . '/cores');
+        define('APPLICATION_SERVICES_PATH', APPLICATION_PATH . '/services');
+        define('APPLICATION_LIBRARY_PATH', APPLICATION_PATH . '/library');
+        define('APPLICATION_MODULES_PATH', APPLICATION_PATH . '/modules');
+        define('APPLICATION_ENVIRON_LOCAL', APPLICATION_ENVIRON === 'local');
+        define('APPLICATION_ENVIRON_TEST', APPLICATION_ENVIRON === 'test');
         define('APPLICATION_ENVIRON_PRODUCT', APPLICATION_ENVIRON === 'product');
     }
 
@@ -33,7 +33,7 @@ class Bootstrap extends Bootstrap_Abstract {
      */
     public function _initDatabase(Dispatcher $dispatcher) {
         $config = new ConfigIni(APPLICATION_CONFIG_PATH . '/database.ini', APPLICATION_ENVIRON);
-        ActiveRecordConfig::instance()->set_connections($config->database->toArray());
+        ActiveRecordConfig::instance()->set_connections($config->get('database')->toArray());
         ActiveRecordConfig::instance()->set_default_connection("master");
     }
 
@@ -48,14 +48,14 @@ class Bootstrap extends Bootstrap_Abstract {
             'Core'    => APPLICATION_CORES_PATH,
         ]);
         spl_autoload_register([$autoload, 'loader']);
-        $dispatcher->autoload = $autoload;
     }
 
     /**
+     * 抛出异常，不使用\Yaf\ErrorController接收，通过\Core\ExceptionHandler处理
+     *
      * @param Dispatcher $dispatcher
      */
     public function _initException(Dispatcher $dispatcher) {
-        // 抛出异常，不使用\Yaf\ErrorController接收，通过\Core\ExceptionHandler处理
         $dispatcher->throwException(true);
         $dispatcher->catchException(false);
         new ExceptionHandler();
@@ -65,7 +65,7 @@ class Bootstrap extends Bootstrap_Abstract {
      * @param Dispatcher $dispatcher
      */
     public function _initLibrary(Dispatcher $dispatcher) {
-        $namespace = $dispatcher->getApplication()->getConfig()->application->library->localnamespace;
+        $namespace = $dispatcher->getApplication()->getConfig()->get('application.library.local_namespace');
         $namespace = explode(',', $namespace);
         Loader::getInstance()->registerLocalNamespace($namespace);
     }
@@ -81,6 +81,6 @@ class Bootstrap extends Bootstrap_Abstract {
      */
     public function _initRoute(Dispatcher $dispatcher) {
         $config = new ConfigIni(APPLICATION_CONFIG_PATH . "/routes.ini");
-        $dispatcher->getRouter()->addConfig($config->routes);
+        $dispatcher->getRouter()->addConfig($config->get('routes'));
     }
 }
