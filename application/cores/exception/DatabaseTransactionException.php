@@ -1,15 +1,21 @@
 <?php
-/**
- * 核心异常类 数据库事务异常
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-10-23
- */
 namespace Core\Exception;
 
-class DatabaseConnectionException extends \Core\Exception {
+use Core\Exception;
 
-    protected $code    = 903;
-
-    protected $message = "数据库事务异常";
-
+/**
+ * Class DatabaseTransactionException
+ *
+ * @package Core\Exception
+ * @author  Lancer He
+ */
+class DatabaseTransactionException extends Exception {
+    /**
+     * @var int
+     */
+    protected $code = 903;
+    /**
+     * @var string
+     */
+    protected $message = "Database commit failed.";
 }

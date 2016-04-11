@@ -1,15 +1,21 @@
 <?php
-/**
- * 核心异常类 上传通用异常
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-10-23
- */
 namespace Core\Exception;
 
-class UploadException extends \Core\Exception {
+use Core\Exception;
 
-    protected $code    = 920;
-
-    protected $message = "上传出现异常";
-
+/**
+ * Class UploadException
+ *
+ * @package Core\Exception
+ * @author  Lancer He
+ */
+class UploadException extends Exception {
+    /**
+     * @var int
+     */
+    protected $code = 920;
+    /**
+     * @var string
+     */
+    protected $message = "Upload failed.";
 }

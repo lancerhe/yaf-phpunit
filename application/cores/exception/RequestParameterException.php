@@ -1,15 +1,21 @@
 <?php
-/**
- * 核心异常类 请求参数异常
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-10-23
- */
 namespace Core\Exception;
 
-class RequestParameterException extends \Core\Exception {
+use Core\Exception;
 
-    protected $code    = 912;
-
-    protected $message = "请求参数异常";
-
+/**
+ * Class RequestParameterException
+ *
+ * @package Core\Exception
+ * @author  Lancer He
+ */
+class RequestParameterException extends Exception {
+    /**
+     * @var int
+     */
+    protected $code = 912;
+    /**
+     * @var string
+     */
+    protected $message = "Request method failed.";
 }

@@ -1,15 +1,21 @@
 <?php
-/**
- * 核心异常类 数据库连接异常
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-10-23
- */
 namespace Core\Exception;
 
-class DatabaseConnectionException extends \Core\Exception {
+use Core\Exception;
 
-    protected $code    = 901;
-
-    protected $message = "数据库连接异常";
-
+/**
+ * Class DatabaseConnectionException
+ *
+ * @package Core\Exception
+ * @author  Lancer He
+ */
+class DatabaseConnectionException extends Exception {
+    /**
+     * @var int
+     */
+    protected $code = 901;
+    /**
+     * @var string
+     */
+    protected $message = "Database connect failed.";
 }

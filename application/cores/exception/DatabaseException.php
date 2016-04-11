@@ -1,15 +1,21 @@
 <?php
-/**
- * 核心异常类 数据库通用异常
- * @author Lancer He <lancer.he@gmail.com>
- * @since  2014-10-23
- */
 namespace Core\Exception;
 
-class DatabaseException extends \Core\Exception {
+use Core\Exception;
 
-    protected $code    = 900;
-
-    protected $message = "数据库异常";
-
+/**
+ * Class DatabaseException
+ *
+ * @package Core\Exception
+ * @author  Lancer He
+ */
+class DatabaseException extends Exception {
+    /**
+     * @var int
+     */
+    protected $code = 900;
+    /**
+     * @var string
+     */
+    protected $message = "Something wrong with database.";
 }

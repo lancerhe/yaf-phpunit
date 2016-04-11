@@ -15,4 +15,3 @@ $application->bootstrap();
 if ( ! defined('APPLICATION_NOT_RUN') ) {
     $application->run();
 }
-?>
