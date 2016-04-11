@@ -46,7 +46,7 @@ class Article_AddTest extends TestCase {
     public function create_article_while_category_not_found() {
         $this->setExpectedException("\Exception", "Category not exists");
 
-        $stubModelArticle = $this->getMockBuilder('\Service\Repository\Article')
+        $stubModelArticle = $this->getMockBuilder('\Service\Model\Article')
             ->disableOriginalConstructor()
             ->setMethods(['createByCategoryId'])
             ->getMock();
@@ -65,8 +65,8 @@ class Article_AddTest extends TestCase {
             )
             ->will($this->onConsecutiveCalls(2, 's', 'c'));
 
-        $Controller                    = new Controller_Article($stubRequest, $this->_mockResponse(), $this->_mockView());
-        $Controller->ArticleRepository = $stubModelArticle;
+        $Controller               = new Controller_Article($stubRequest, $this->_mockResponse(), $this->_mockView());
+        $Controller->ArticleModel = $stubModelArticle;
         $Controller->AddAction();
     }
 
@@ -74,7 +74,7 @@ class Article_AddTest extends TestCase {
      * @test
      */
     public function create_article_and_assign_variables() {
-        $stubCreatedArticle = $this->getMockBuilder('\Service\Repository\Category')
+        $stubCreatedArticle = $this->getMockBuilder('\Service\Model\Category')
             ->disableOriginalConstructor()
             ->setMethods(['__get'])
             ->getMock();
@@ -83,7 +83,7 @@ class Article_AddTest extends TestCase {
             ->with( $this->equalTo('subject') )
             ->will( $this->returnValue("s_1") );
 
-        $stubModelArticle = $this->getMockBuilder('\Service\Repository\Article')
+        $stubModelArticle = $this->getMockBuilder('\Service\Model\Article')
             ->disableOriginalConstructor()
             ->setMethods(['createByCategoryId'])
             ->getMock();
@@ -110,8 +110,8 @@ class Article_AddTest extends TestCase {
             ->method('display')
             ->with($this->equalTo('article/add.html'));
 
-        $Controller                    = new Controller_Article($stubRequest, $this->_mockResponse(), $stubView);
-        $Controller->ArticleRepository = $stubModelArticle;
+        $Controller               = new Controller_Article($stubRequest, $this->_mockResponse(), $stubView);
+        $Controller->ArticleModel = $stubModelArticle;
         $Controller->AddAction();
     }
 }

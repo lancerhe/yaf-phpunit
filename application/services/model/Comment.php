@@ -1,5 +1,5 @@
 <?php
-namespace Service\Repository;
+namespace Service\Model;
 
 use ActiveRecord\Model;
 use ActiveRecord\RecordNotFound;
@@ -8,7 +8,7 @@ use Exception;
 /**
  * Class Comment
  *
- * @package Service\Repository
+ * @package Service\Model
  * @author  Lancer He <lancer.he@gmail.com>
  */
 class Comment extends Model {
@@ -23,7 +23,7 @@ class Comment extends Model {
         [
             'article',
             'foreign_key' => 'article_id',
-            'class_name'  => '\Service\Repository\Article',
+            'class_name'  => '\Service\Model\Article',
         ],
     ];
 

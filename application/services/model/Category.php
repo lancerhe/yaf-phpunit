@@ -1,12 +1,12 @@
 <?php
-namespace Service\Repository;
+namespace Service\Model;
 
 use ActiveRecord\Model;
 
 /**
  * Class Category
  *
- * @package Service\Repository
+ * @package Service\Model
  * @author  Lancer He <lancer.he@gmail.com>
  */
 class Category extends Model {
@@ -21,7 +21,7 @@ class Category extends Model {
         [
             'article',
             'foreign_key' => 'category_id',
-            'class_name'  => '\Service\Repository\Article',
+            'class_name'  => '\Service\Model\Article',
         ],
     ];
 }

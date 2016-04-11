@@ -1,7 +1,7 @@
 <?php
-use Service\Repository\Category as Repository_Category;
-use Service\Repository\Article as Repository_Article;
-use Service\Repository\Comment as Repository_Comment;
+use Service\Model\Category as Model_Category;
+use Service\Model\Article as Model_Article;
+use Service\Model\Comment as Model_Comment;
 use Core\Controller\Main as Controller_Main;
 use Core\View\Main as MainView;
 
@@ -12,26 +12,26 @@ use Core\View\Main as MainView;
  */
 class Controller_Article extends Controller_Main {
     /**
-     * @var Repository_Category
+     * @var Model_Category
      */
-    public $CategoryRepository;
+    public $CategoryModel;
     /**
-     * @var Repository_Article
+     * @var Model_Article
      */
-    public $ArticleRepository;
+    public $ArticleModel;
     /**
-     * @var Repository_Comment
+     * @var Model_Comment
      */
-    public $CommentRepository;
+    public $CommentModel;
 
     /**
      * init
      */
     public function init() {
         parent::init();
-        $this->CategoryRepository = new Repository_Category;
-        $this->ArticleRepository  = new Repository_Article;
-        $this->CommentRepository  = new Repository_Comment;
+        $this->CategoryModel = new Model_Category;
+        $this->ArticleModel  = new Model_Article;
+        $this->CommentModel  = new Model_Comment;
     }
 
     /**
@@ -40,8 +40,8 @@ class Controller_Article extends Controller_Main {
     public function AddCategoryAction() {
         $name = $this->_request->getQuery('name');
         try {
-            $this->CategoryRepository->name = $name;
-            $this->CategoryRepository->save();
+            $this->CategoryModel->name = $name;
+            $this->CategoryModel->save();
         } catch ( \ActiveRecord\DatabaseException $e ) {
             throw new Exception("Category name exists.");
         }
@@ -56,7 +56,7 @@ class Controller_Article extends Controller_Main {
         $category_id = $this->_request->getQuery('category_id');
         $subject     = $this->_request->getQuery('subject');
         $content     = $this->_request->getQuery('content');
-        $Article     = $this->ArticleRepository->createByCategoryId($category_id, ["subject" => $subject, "content" => $content]);
+        $Article     = $this->ArticleModel->createByCategoryId($category_id, ["subject" => $subject, "content" => $content]);
         $this->getView()->assign("subject", $Article->subject);
         $this->getView()->display("article/add.html");
     }
@@ -67,7 +67,7 @@ class Controller_Article extends Controller_Main {
     public function AddCommentAction() {
         $article_id = $this->_request->getQuery('article_id');
         $content    = $this->_request->getQuery('content');
-        $Comment    = $this->CommentRepository->createByArticleId($article_id, ["content" => $content]);
+        $Comment    = $this->CommentModel->createByArticleId($article_id, ["content" => $content]);
         $this->getView()->assign("content", $Comment->content);
         $this->getView()->display("article/addcomment.html");
     }

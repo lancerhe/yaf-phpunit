@@ -43,7 +43,7 @@ class Article_AddCategoryTest extends TestCase {
      * @test
      */
     public function category_has_exists() {
-        $stubModelCategory = $this->getMockBuilder('\Service\Repository\Category')
+        $stubModelCategory = $this->getMockBuilder('\Service\Model\Category')
             ->disableOriginalConstructor()
             ->setMethods(['save', '__set'])
             ->getMock();
@@ -62,8 +62,8 @@ class Article_AddCategoryTest extends TestCase {
             ->method('getQuery')
             ->with($this->equalTo('name'))
             ->will($this->returnValue('New CategoryName'));
-        $Controller                     = new Controller_Article($stubRequest, $this->_mockResponse(), $this->_mockView());
-        $Controller->CategoryRepository = $stubModelCategory;
+        $Controller                = new Controller_Article($stubRequest, $this->_mockResponse(), $this->_mockView());
+        $Controller->CategoryModel = $stubModelCategory;
         $Controller->AddCategoryAction();
     }
 
@@ -71,7 +71,7 @@ class Article_AddCategoryTest extends TestCase {
      * @test
      */
     public function category_createand_assign_variables() {
-        $stubModelCategory = $this->getMockBuilder('\Service\Repository\Category')
+        $stubModelCategory = $this->getMockBuilder('\Service\Model\Category')
             ->disableOriginalConstructor()
             ->setMethods(['save', '__set'])
             ->getMock();
@@ -96,8 +96,8 @@ class Article_AddCategoryTest extends TestCase {
             ->method('display')
             ->with($this->equalTo('article/addcategory.html'));
 
-        $Controller                     = new Controller_Article($stubRequest, $this->_mockResponse(), $stubView);
-        $Controller->CategoryRepository = $stubModelCategory;
+        $Controller                = new Controller_Article($stubRequest, $this->_mockResponse(), $stubView);
+        $Controller->CategoryModel = $stubModelCategory;
         $Controller->AddCategoryAction();
     }
 }
