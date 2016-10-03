@@ -20,6 +20,6 @@ for folder in "public" "application" "tests"; do
 done
 
 echo -e "\r\n\033[43;37mRun unit tests.\033[0m"
-${PHP_BIN} ./vendor/bin/phpunit -c tests/phpunit.xml --testsuite unit
+${PHP_BIN} ./vendor/bin/phpunit -c tests/site/phpunit.xml --testsuite unit
 echo -e "\r\n\033[43;37mRun acceptance tests.\033[0m"
-${PHP_BIN} ./vendor/bin/phpunit -c tests/phpunit.xml --testsuite acceptance
+${PHP_BIN} ./vendor/bin/phpunit -c tests/site/phpunit.xml --testsuite acceptance
